@@ -25,7 +25,7 @@ quantlab/
 ├── data/          yfinance (equities), crypto, Polymarket CLOB; on-disk caching
 ├── engine/        vectorized backtester + metrics
 ├── research/      grid-search optimizer, anchored walk-forward validation
-├── strategies/    8 strategies behind one Strategy interface + registry
+├── strategies/    7 strategies behind one Strategy interface + registry
 └── report.py      matplotlib equity/drawdown/position charts
 main.py            CLI: backtest · scan · optimize · walkforward · pm-search
 experiments/       standalone research studies (see below)
