@@ -4,29 +4,48 @@ import pandas as pd
 
 
 def _periods_per_year(index: pd.DatetimeIndex) -> float:
+    """Observations per year, used to annualize Sharpe, volatility and CAGR.
+
+    A daily stock series and a daily 24/7 crypto series BOTH have a one-day
+    median step, so step size alone cannot tell them apart. Weekend timestamps
+    are the discriminator: a market that prints bars on Saturdays trades ~365
+    days a year, one that does not trades ~252. Choosing wrong scales Sharpe by
+    sqrt(365/252) ~ 1.20 and distorts CAGR by more, because n_years is derived
+    from this too.
+    """
     if len(index) < 2:
         return 252.0
+    index = pd.DatetimeIndex(index)
     median_step = pd.Series(index).diff().median()
     seconds = median_step.total_seconds()
     if seconds <= 0:
         return 252.0
+
+    sessions_per_year = 365.0 if bool(index.dayofweek.isin((5, 6)).any()) else 252.0
     per_day = 86_400 / seconds
-    if per_day >= 2:          # intraday data trades around the clock
-        return per_day * 365
-    if per_day > 0.5:         # daily data: assume trading days for stocks-ish cadence
-        return 365 if seconds <= 86_400 else 252
+
+    if per_day >= 2:  # intraday: bars per session x sessions per year
+        return per_day * sessions_per_year
+    if seconds <= 86_400:  # daily bars
+        return sessions_per_year
+    # Coarser than daily (weekly, monthly): derive straight from the step.
     return 365 / (seconds / 86_400)
 
 
 def compute_metrics(equity: pd.Series, trades: int = 0,
-                    trade_returns: list | None = None) -> dict:
-    """Compute standard performance stats from an equity curve (start=1.0)."""
+                    trade_returns: list | None = None,
+                    periods_per_year: float | None = None) -> dict:
+    """Compute standard performance stats from an equity curve (start=1.0).
+
+    `periods_per_year` overrides the inference in `_periods_per_year` — pass it
+    when the calendar is known, rather than trusting the index to reveal it.
+    """
     equity = equity.dropna()
     if len(equity) < 2:
         return {"error": "not enough data"}
 
     returns = equity.pct_change().dropna()
-    ppy = _periods_per_year(equity.index)
+    ppy = periods_per_year if periods_per_year else _periods_per_year(equity.index)
     n_years = len(returns) / ppy
 
     total_return = equity.iloc[-1] / equity.iloc[0] - 1

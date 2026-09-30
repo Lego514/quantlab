@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 
+from ..engine.metrics import _periods_per_year
 from .base import Strategy
 
 
@@ -22,21 +23,14 @@ class VolMomentum(Strategy):
         self.vol_window = int(vol_window)
         self.max_position = max_position
 
-    def _periods_per_year(self, index: pd.DatetimeIndex) -> float:
-        if len(index) < 2:
-            return 252.0
-        seconds = pd.Series(index).diff().median().total_seconds()
-        if seconds <= 0:
-            return 252.0
-        per_day = 86_400 / seconds
-        if per_day >= 2:
-            return per_day * 365
-        return 365 if seconds <= 86_400 else 252
-
     def generate_positions(self, prices: pd.DataFrame) -> pd.Series:
         close = prices["close"]
         trailing = close.pct_change(self.lookback)
-        ppy = self._periods_per_year(close.index)
+        # Same calendar rule the metrics use. This used to be a private copy
+        # that returned 365 for every daily series, which overstated a stock's
+        # annualized vol by sqrt(365/252) ~ 1.20 and sized its positions ~17%
+        # smaller than target_vol asked for.
+        ppy = _periods_per_year(close.index)
         realized_vol = close.pct_change().rolling(self.vol_window).std() * np.sqrt(ppy)
         size = (self.target_vol / realized_vol).clip(upper=self.max_position)
         return size.where(trailing > 0, 0.0).fillna(0.0)
