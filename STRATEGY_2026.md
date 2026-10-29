@@ -13,7 +13,7 @@ Same data (through 2026-09-30); only the method changed. Each change came from a
 3. **Error bars.** A block bootstrap puts the portfolio Sharpe's 95% interval at **0.34 to 1.78**. At 1.08, about 3.3 years of returns would make it statistically significant; there are 8.5.
 4. **Signal-quality gate.** The out-of-sample trades fail two of its checks — see [Known weaknesses](#known-weaknesses-the-honest-section).
 5. **Data source.** The BTC history is Yahoo's, not Binance's: the loader tried Binance, got HTTP 451 (US addresses are blocked), and fell back silently. The numbers do not change; results now say which source they came from.
-6. **The Polymarket side study is being rerun** with tradeable entry prices (actual trades instead of the price-history series) and a staleness check, on a much larger sample. A larger study in a sibling project already found favorites winning *less* often than implied, so the section below should not be relied on until the rerun replaces it.
+6. **The Polymarket side study was rerun** with tradeable entry prices (actual trades instead of the price-history series), a staleness check, and five times the sample. The favorite bias it reported does not exist; see the side study.
 
 ## Correction (2026-09-30)
 
@@ -73,34 +73,40 @@ The portfolio's annualized return is lower than either asset held outright becau
 
 ## Side study: Polymarket favorite–longshot bias
 
-> **Under re-examination (2026-10-28).** This is the original 2026-07-05 result, kept as published until the rerun with `experiments/polymarket_favorite_bias.py` (version 2) replaces it. Its entry prices come from the price-history series, which can be stale prints nobody could trade at.
+**Verdict (rerun 2026-10-28): no favorite bias. Strong favorites are fairly priced at tradeable prices, and the July result came from a small sample of untradeable ones.**
 
-Tested on 500 resolved, high-volume markets (2026-07-05; 118 tradeable samples):
+The question: do markets priced 0.90–0.98 two weeks before they resolve win more often than their price says? `experiments/polymarket_favorite_bias.py` (version 2) took 3,000 clean binary markets that resolved on schedule in 2026, found the **last actual trade** 14 days before each scheduled end, and recorded how stale that trade was. 587 had a trade in range.
 
-| Entry price bucket | n | Win rate | Mean 14-day return | Edge vs implied probability |
-|---|---|---|---|---|
-| 0.90–0.98 (strong favorites) | 11 | **100%** | **+5.8%** | +5.4% |
-| 0.70–0.90 | 6 | 83.3% | +7.6% | +6.3% |
-| 0.50–0.70 | 13 | 53.8% | -9.6% | -7.3% |
+| Entry price bucket | n | Avg entry | Win rate (95% CI) | Edge | Fresh trades only (≤6h old) |
+|---|---|---|---|---|---|
+| 0.90–0.98 (strong favorites) | 40 | 0.94 | 85.0% (70.9–92.9%) | **-9.3%** | n=25: 96.0% vs 0.94, edge **+1.7%** (CI 80.5–99.3%) |
+| 0.70–0.90 | 73 | 0.79 | 78.1% (67.3–86.0%) | -1.4% | n=44: edge +5.9% (CI 73.3–93.6%) |
+| 0.02–0.10 (longshots) | 193 | 0.05 | 9.3% (6.0–14.3%) | +4.1% | n=59: edge **-1.5%** |
 
-Two independent runs (150 markets, then 500) agree directionally: buying strong favorites and holding to resolution has positive expectancy. If the capital could be recycled every 14 days, +5.8% compounds to over 100% annualized in theory — **the only structural mispricing I found in any of these experiments that could plausibly produce very high returns.**
+How to read it:
 
-**The statistically honest caveat:** a 16-for-16 record has a 95% confidence lower bound around 81%, which is not yet enough to claim the true win rate exceeds the ~0.95 average entry price. This needs roughly 100 favorite-bucket samples, or a small-capital live test over three months, before it means anything. Also, outcomes within a single event class (e.g. teams in one tournament) are highly correlated and cannot be sized as independent bets.
+- **Across all 40 favorites, buying lost about 10% a trade.** The win rate's upper bound, 92.9%, sits below the 0.94 average price.
+- **That loss lives in the stale prints.** The 15 favorites whose last trade was more than 6 hours old won only 67%: a market can move on news while its last print still shows the old price, and nobody can buy at that print. On the 25 fresh trades, favorites won 96% against a 94% price, an edge of +1.7% with an interval from 80% to 99%. That is fair pricing, not an edge.
+- **The longshot "edge" is the same artifact in reverse.** Stale longshot prints show +6.6%; fresh ones show -1.5%.
+- No bucket's fresh-only edge is distinguishable from zero. The signal-quality gate fails the favorites (trimmed mean -6.1%, t = -1.7).
+- Outcomes within one event (teams in one tournament) are correlated, so the effective sample is smaller than the counts.
+
+**The original result, for the record (2026-07-05):** 16 of 16 favorites won, from 500 high-volume markets, with a +5.8% mean 14-day return. I called it "the only structural mispricing I found that could plausibly produce very high returns" while noting that 16 samples could not support the claim. They could not: the entry prices were points on the price-history series, not trades, and the sample was about a fifth the size of today's. A larger study in a sibling project (two horizons, 486 and 370 markets) had found the opposite, favorites winning less often than implied. The staleness split suggests both readings came from prices nobody could trade at.
 
 ## Appendix: four attempts at 50%+ annualized, and what actually happened
 
-I deliberately went looking for higher returns. Three of the four paths died in out-of-sample testing:
+I deliberately went looking for higher returns. All four paths died in out-of-sample testing:
 
 | Path | Full-period backtest | Honest out-of-sample | Verdict |
 |---|---|---|---|
 | Weekly altcoin rotation (top-N momentum) | 77–132% annualized | **-3% annualized** (2024+) | A mirage propped up by the 2017/2021 altseasons. Dead. |
 | 1-hour Donchian breakout | IS Sharpe 4.36 | **OOS Sharpe -0.89** | High frequency + transaction costs = textbook overfitting |
 | 1.5x–4x leverage on the validated portfolio | — | 4x returns 12.3% a year at -63% drawdown; the best, 13.0% at 3x, costs -51% | Volatility drag and financing: returns barely move, drawdowns scale almost linearly. Dead. |
-| Polymarket favorite bias | — | See experiment output above | The only plausible high-return source found — but capacity-limited |
+| Polymarket favorite bias | 16 of 16 favorites won (July, price-history entries) | Tradeable entries: 96% won at a 0.94 price (n=25), edge +1.7%, not significant | A small sample of stale prices. Dead. |
 
 The leverage row changed the most in the first restatement. The first version reported 26.8% a year at 4x; charging financing on weekends and fixing the calendar bugs above brought that down to 11.2% (12.3% with next-open fills). The verdict did not change; it got stronger.
 
-**The lesson:** the honest way to raise returns is not a cleverer signal. It's either accepting the roughly 1:1.5 return-to-drawdown physics of trend following, or finding a structural mispricing (as in prediction markets) — and then being rigorous about whether the sample size supports the claim.
+**The lesson:** the honest way to raise returns is not a cleverer signal. It's either accepting the roughly 1:1.5 return-to-drawdown physics of trend following, or finding a structural mispricing — and then being rigorous about whether the sample size supports the claim, and whether the prices behind it could actually have been traded. The one candidate mispricing here failed both tests.
 
 ## Reproduce
 

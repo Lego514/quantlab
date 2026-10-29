@@ -85,7 +85,7 @@ The gate's thresholds are fixed before any result is seen. It was written for ar
 Standalone studies that use the engine rather than extend it:
 
 - **`portfolio_2026.py`** — a 50/50 QQQ + BTC volatility-targeted momentum portfolio, scored **only on walk-forward out-of-sample returns**
-- **`polymarket_favorite_bias.py`** — tests the favorite–longshot bias on *resolved* Polymarket markets (does the crowd systematically overprice favorites?)
+- **`polymarket_favorite_bias.py`** — tests the favorite–longshot bias on *resolved* Polymarket markets, entering at actual trades and splitting fresh from stale prices. Verdict: no bias at tradeable prices; the apparent edges on both ends live in stale prints
 - **`crypto_rotation.py`** — weekly top-N momentum rotation across altcoins, with an honest split: parameters chosen on pre-2023 data, validated on 2024+
 - **`leverage_sweep.py`** — sweeps 1x–4x leverage over already-validated out-of-sample returns to show the return/drawdown tradeoff
 
