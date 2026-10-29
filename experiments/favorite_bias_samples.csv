@@ -1,119 +1,588 @@
-question,entry,outcome,ret
-"MicroStrategy sells any Bitcoin by May 31, 2026?",0.195,0.0,-1.0
-Will Zelenskyy wear a suit before July?,0.12,0.0,-1.0
-"US x Iran permanent peace deal by June 15, 2026?",0.135,1.0,6.4074074074074066
-Kamala Harris wins the popular vote?,0.5705,0.0,-1.0
-US government shutdown Saturday?,0.125,1.0,7.0
-Will Zohran Mamdani win the 2025 NYC mayoral election?,0.923,1.0,0.08342361863488623
-"Russia x Ukraine ceasefire by May 31, 2026?",0.047,0.0,-1.0
-Will Aston Villa win the UEFA Champions League?,0.0265,0.0,-1.0
-Khamenei out as Supreme Leader of Iran by February 28?,0.029,1.0,33.48275862068965
-Will Trump nominate Judy Shelton as the next Fed chair?,0.0365,0.0,-1.0
-Will Donald Trump win the popular vote in the 2024 President,0.419,1.0,1.3866348448687353
-TikTok banned in the US before May 2025?,0.43,1.0,1.3255813953488373
-No change in Fed interest rates after January 2026 meeting?,0.9545,1.0,0.04766893661602922
-Fed decreases interest rates by 25 bps after January 2026 me,0.041,0.0,-1.0
-Will Japan win the 2026 FIFA World Cup?,0.0215,0.0,-1.0
-Will Trump release the Epstein files by December 19?,0.515,1.0,0.941747572815534
-Will Lee Jae-myung be elected the next president of South Ko,0.935,1.0,0.06951871657753994
-"US x Iran permanent peace deal by May 31, 2026?",0.075,0.0,-1.0
-Will Inter Milan win the UEFA Champions League?,0.4105,0.0,-1.0
-Will Germany win the 2026 FIFA World Cup?,0.0635,0.0,-1.0
-"Will Eleven die in ""Stranger Things: Season 5""?",0.44,0.0,-1.0
-Will Netherlands win the 2026 FIFA World Cup?,0.0445,0.0,-1.0
-Will there be no change in Fed interest rates after the Apri,0.9485,1.0,0.054296257248286794
-Will Trump launch a coin before the election?,0.345,1.0,1.8985507246376816
-US forces enter Iran by March 31?,0.375,0.0,-1.0
-Russia x Ukraine ceasefire in 2025?,0.0255,0.0,-1.0
-Will Kim Moon-soo be elected the next president of South Kor,0.047,0.0,-1.0
-Will the LA Clippers win the 2025 NBA Finals?,0.0355,0.0,-1.0
-Will Pierre Poilievre be the next Canadian Prime Minister?,0.275,0.0,-1.0
-No change in Fed interest rates after September 2025 meeting,0.125,0.0,-1.0
-Will Polymarket US go live in 2025?,0.725,1.0,0.3793103448275863
-Khamenei out as Supreme Leader of Iran by March 31?,0.165,1.0,5.0606060606060606
-Will the Iranian regime fall by March 31?,0.0575,0.0,-1.0
-Trump ends Ukraine war in first 90 days?,0.0235,0.0,-1.0
-Lighter market cap (FDV) >$1B one day after launch?,0.67,1.0,0.4925373134328357
-Fed decreases interest rates by 25 bps after December 2025 m,0.845,1.0,0.18343195266272194
-Will Kamala Harris win the 2024 Democratic Presidential Nomi,0.866,1.0,0.15473441108545027
-Will there be a US Government shutdown? ,0.0365,1.0,26.397260273972606
-Will the Iranian regime fall by April 30?,0.0325,0.0,-1.0
-Fed decreases interest rates by 50+ bps after October 2025 m,0.024,0.0,-1.0
-Will Lee Jun-seok be elected the next president of South Kor,0.0225,0.0,-1.0
-Israel x Iran ceasefire before July? ,0.175,1.0,4.714285714285714
-Fed decreases interest rates by 25 bps after October 2025 me,0.935,1.0,0.06951871657753994
-US x Venezuela military engagement by December 31?,0.07,0.0,-1.0
-Will Nicușor Dan win the Romanian presidential election?,0.305,1.0,2.278688524590164
-Fed decreases interest rates by 50+ bps after September 2025,0.046,0.0,-1.0
-Khamenei out as Supreme Leader of Iran by January 31?,0.075,0.0,-1.0
-"US x Iran permanent peace deal by June 30, 2026?",0.255,1.0,2.9215686274509802
-Will Andrew Cuomo win the 2025 NYC mayoral election?,0.066,0.0,-1.0
-Iran x Israel/US conflict ends by April 7?,0.043,1.0,22.255813953488374
-Will Michelle Obama win the 2024 Democratic Presidential Nom,0.07,0.0,-1.0
-Will Bayer Leverkusen win the UEFA Champions League?,0.0335,0.0,-1.0
-No change in Fed interest rates after October 2025 meeting?,0.045,0.0,-1.0
-No change in Fed interest rates after December 2025 meeting?,0.145,0.0,-1.0
-US x Iran ceasefire by March 31?,0.165,0.0,-1.0
-"US strikes Iran by January 31, 2026?",0.25,0.0,-1.0
-Will Rafał Trzaskowski be the next President of Poland?,0.595,0.0,-1.0
-Yoon out as president of South Korea before May?,0.615,1.0,0.6260162601626016
-Israel x Hezbollah Ceasefire in 2024?,0.44,1.0,1.272727272727273
-Will the Denver Nuggets win the 2025 NBA Finals?,0.033,0.0,-1.0
-Will Mark Carney be the next Canadian Prime Minister?,0.725,1.0,0.3793103448275863
-Monad market cap (FDV) >$4B one day after launch?,0.495,0.0,-1.0
-Maduro out in 2025?,0.0705,0.0,-1.0
-Strait of Hormuz traffic returns to normal by end of May?,0.0575,0.0,-1.0
-Yoon out as president of South Korea before April?,0.695,0.0,-1.0
-Will George Simion win the Romanian presidential election?,0.685,0.0,-1.0
-Will Karol Nawrocki be the next President of Poland?,0.405,1.0,1.4691358024691357
-U.S. anti-cartel ground operation in Mexico by January 31?,0.072,1.0,12.88888888888889
-US military action against Iran before July?,0.045,1.0,21.22222222222222
-Will Donald Trump win Nobel Peace Prize in 2025?,0.034,0.0,-1.0
-Will Belgium win on 2026-06-15?,0.595,0.0,-1.0
-No change in Fed interest rates after July 2025 meeting?,0.961,1.0,0.04058272632674309
-Fordow nuclear facility destroyed before July?,0.565,1.0,0.7699115044247788
-Will Bitcoin hit $100k in November?,0.395,0.0,-1.0
-"Will Trump say ""Iran"" during events with Xi Jinping?",0.725,0.0,-1.0
-Will someone else win the 2024 Democratic Presidential Nomin,0.0385,0.0,-1.0
-No change in Fed interest rates after June 2025 meeting?,0.971,1.0,0.029866117404737436
-Will Kanye launch a coin in February?,0.15,0.0,-1.0
-Will Atletico Madrid win the UEFA Champions League?,0.0355,0.0,-1.0
-"Russia x Ukraine ceasefire by January 31, 2026?",0.0255,0.0,-1.0
-QatarEnergy announces/resumes LNG production in Qatar by Apr,0.615,1.0,0.6260162601626016
-Lighter market cap (FDV) >$2B one day after launch?,0.585,1.0,0.7094017094017095
-Will Atletico Madrid win the 2025–26 Champions League?,0.116,0.0,-1.0
-Will the Los Angeles Lakers win the 2026 NBA Finals?,0.0295,0.0,-1.0
-Will Han Duck-soo be the People's Power Party candidate for ,0.034,0.0,-1.0
-Fed decreases interest rates by 25 bps after July 2025 meeti,0.0285,0.0,-1.0
-No change in Fed interest rates after 2024 September meeting,0.0315,0.0,-1.0
-Will Trump create Bitcoin reserve in first 100 days?,0.075,0.0,-1.0
-Fed decreases interest rates by 25 bps after June 2025 meeti,0.0235,0.0,-1.0
-US forces enter Iran by December 31?,0.63,1.0,0.5873015873015872
-Fed decreases interest rates by 25 bps after May 2025 meetin,0.07,0.0,-1.0
-Fed decreases interest rates by 25 bps after January 2025 me,0.0295,0.0,-1.0
-No change in Fed interest rates after January 2025 meeting?,0.965,1.0,0.0362694300518136
-No change in Fed interest rates after May 2025 meeting?,0.905,1.0,0.1049723756906078
-US obtains Iranian enriched uranium by May 31?,0.055,0.0,-1.0
-Fed rate cut by September 18?,0.969,1.0,0.031991744066047545
-Will Netherlands win on 2026-06-14?,0.485,0.0,-1.0
-Ethereum all time high in 2024?,0.16,0.0,-1.0
-Will the Detroit Pistons win the 2026 NBA Finals?,0.0525,0.0,-1.0
-"US x Iran permanent peace deal by June 7, 2026?",0.315,0.0,-1.0
-Will Morocco win on 2026-06-24?,0.735,1.0,0.3605442176870748
-"US strikes Iran by February 20, 2026?",0.215,0.0,-1.0
-Will a Democrat win the popular vote and a Republican win th,0.26,0.0,-1.0
-Will AfD win the most seats in the next German election?,0.0705,0.0,-1.0
-"US x Iran permanent peace deal by May 15, 2026?",0.085,0.0,-1.0
-Strait of Hormuz traffic returns to normal by May 15?,0.031,0.0,-1.0
-Will  Zohran Mamdani win the Democratic Primary for Mayor of,0.3805,1.0,1.6281208935611038
-Will Andrew Cuomo win the Democratic Primary for Mayor of Ne,0.615,0.0,-1.0
-Will a Republican win the popular vote and a Democrat win th,0.0235,0.0,-1.0
-Iran x Israel/US conflict ends by April 15?,0.19,1.0,4.2631578947368425
-Kharg Island no longer under Iranian control by April 30?,0.295,0.0,-1.0
-Spread: Morocco (-1.5),0.455,1.0,1.1978021978021975
-Fed decreases interest rates by 25 bps after March 2025 meet,0.0455,0.0,-1.0
-No change in Fed interest rates after March 2025 meeting?,0.938,1.0,0.06609808102345416
-Russia x Ukraine ceasefire before July?,0.024,0.0,-1.0
-"Israel strikes Iran by January 31, 2026?",0.205,0.0,-1.0
-Will Morocco win on 2026-06-19?,0.495,1.0,1.0202020202020203
-Will Israel invade Syria in 2024?,0.1915,1.0,4.221932114882507
+question,entry,stale_h,outcome,ret,volume
+Will Gord Krantz win the 2026 Milton mayoral election?,0.56,3.71,0.0,-1.0,6448.631623000001
+Will Marilyn Crawford win the 2026 Ajax mayoral election?,0.8,10.78,1.0,0.25,7083.788734
+Will United Serbia win the 2026 Serbian parliamentary electi,0.23,0.68,0.0,-1.0,11723.845817000001
+Will Andrey Gyurov win the 2026 Bulgarian presidential first,0.044,26.27,0.0,-1.0,58392.00186699999
+Will Iliana Iotova win the 2026 Bulgarian presidential first,0.1,21.8,1.0,9.0,189758.040295
+Will Iliana Iotova win the 2026 Bulgarian presidential first,0.32,37.19,0.0,-1.0,211552.245977
+Will Andrey Gyurov win the most votes in the first round of ,0.022,30.57,0.0,-1.0,52032.647518000005
+Will Iliana Iotova win the most votes in the first round of ,0.969,4.4,1.0,0.031991744066047545,116821.99412
+Will the next Google Gemini Pro model be released between Oc,0.038,51.09,0.0,-1.0,21292.63673
+"Will ""You Can See Everything"" score at least 96 on the Rotte",0.54,0.7,1.0,0.8518518518518516,5166.754495000001
+"Will ""You Can See Everything"" score at least 94 on the Rotte",0.85,1.17,1.0,0.17647058823529416,9203.953819
+"Will ""Sense and Sensibility"" score at least 85 on the Rotten",0.058,1.96,0.0,-1.0,6684.384569999999
+"Will ""Sense and Sensibility"" score at least 80 on the Rotten",0.24,27.71,0.0,-1.0,6266.460158999999
+"Will ""Sense and Sensibility"" score at least 75 on the Rotten",0.7,6.46,1.0,0.4285714285714286,9322.840826
+Will Trish Mandewo win the 2026 Coquitlam mayoral election?,0.2,28.75,0.0,-1.0,7344.667768
+Will Craig Hodge win the 2026 Coquitlam mayoral election?,0.77,22.64,1.0,0.2987013000505989,13247.512702
+"Next Astra Model (6.1+) released by October 16, 2026?",0.058,0.18,0.0,-1.0,56336.913581
+"Next Muse Spark (1.4+) released by October 16, 2026?",0.57,24.74,0.0,-1.0,6477.424485
+Will Águilas Doradas Rionegro win on 2026-08-25?,0.44,79.28,0.0,-1.0,20152.546681
+Will CA Bucaramanga vs. Águilas Doradas Rionegro end in a dr,0.29,850.31,1.0,2.4482758620689657,5746.519798
+Will CA Bucaramanga win on 2026-08-25?,0.45,165.78,0.0,-1.0,88958.28943200005
+Will Augusto Cury win 6% or more of the valid vote in the fi,0.2,0.28,0.0,-1.0,16031.388009999999
+Will Augusto Cury win between 4% and 6% of the valid vote in,0.35,15.35,0.0,-1.0,13152.581170000001
+Will Augusto Cury win between 2% and 4% of the valid vote in,0.35,1.74,1.0,1.8571428571428572,9694.639314000002
+Will Augusto Cury win between 1% and 2% of the valid vote in,0.08,8.75,0.0,-1.0,5456.603787
+Will Renan Santos win 8% or more of the valid vote in the fi,0.1098,0.24,0.0,-1.0,275605.51836199994
+Will Renan Santos win between 6% and 8% of the valid vote in,0.1453,0.24,0.0,-1.0,49916.96385100001
+Will Renan Santos win between 4% and 6% of the valid vote in,0.21,0.24,0.0,-1.0,39009.982395000014
+Will Renan Santos win between 2% and 4% of the valid vote in,0.37,0.24,1.0,1.7027027027027026,58776.448813
+Will Renan Santos win less than 2% of the valid vote in the ,0.21,0.24,0.0,-1.0,26516.840414000006
+Will Flávio Bolsonaro win 39% or more of the valid vote in t,0.88,1.59,1.0,0.13636400000011628,147660.89418799995
+Will Flávio Bolsonaro win between 36% and 39% of the valid v,0.081,10.98,0.0,-1.0,40505.044222
+Will Lula win 44% or more of the valid vote in the first rou,0.52,0.74,1.0,0.9230769230769229,61013.388555
+Will Lula win between 41% and 44% of the valid vote in the f,0.41,0.55,0.0,-1.0,20873.993057999996
+Will Lula win between 38% and 41% of the valid vote in the f,0.02,24.38,0.0,-1.0,11590.396047
+Will the next Google Gemini Pro model be released between Se,0.07,14.42,0.0,-1.0,30040.708436
+"Will ""Dai Dai"" be the first song played at the World Cup Fin",0.98,31.22,0.0,-1.0,11125.822798999996
+Will David Guetta perform at the 2026 FIFA World Cup Final h,0.02,0.97,0.0,-1.0,16210.629368999995
+Will Davido perform at the 2026 FIFA World Cup Final halftim,0.0249,41.35,0.0,-1.0,8719.209611
+Will Wizkid perform at the 2026 FIFA World Cup Final halftim,0.04,10.6,0.0,-1.0,5868.8355630000015
+Will Tems perform at the 2026 FIFA World Cup Final halftime ,0.0678,19.64,0.0,-1.0,19066.986235000004
+Will Peso Pluma perform at the 2026 FIFA World Cup Final hal,0.03,23.7,0.0,-1.0,7650.014139000002
+Will Camila Cabello perform at the 2026 FIFA World Cup Final,0.056,26.18,0.0,-1.0,15368.317720000001
+Will Sam Smith perform at the 2026 FIFA World Cup Final half,0.054,3.07,0.0,-1.0,8580.659457000003
+Will Nicki Minaj perform at the 2026 FIFA World Cup Final ha,0.027,0.96,0.0,-1.0,7938.283259
+Will Cardi B perform at the 2026 FIFA World Cup Final halfti,0.041,10.24,0.0,-1.0,5640.347500000002
+Will Justin Bieber perform at the 2026 FIFA World Cup Final ,0.75,0.47,1.0,0.33333333333333326,94460.44022499993
+Will Kendrick Lamar perform at the 2026 FIFA World Cup Final,0.029,10.1,0.0,-1.0,7957.848559999999
+Will Travis Scott perform at the 2026 FIFA World Cup Final h,0.037,8.8,0.0,-1.0,7860.224543
+Will Post Malone perform at the 2026 FIFA World Cup Final ha,0.0368,1.29,0.0,-1.0,21984.94878499998
+Will Jennifer Lopez perform at the 2026 FIFA World Cup Final,0.05,5.89,0.0,-1.0,5858.078799999999
+Will Daddy Yankee perform at the 2026 FIFA World Cup Final h,0.03,8.87,0.0,-1.0,5705.336971
+Will Sabrina Carpenter perform at the 2026 FIFA World Cup Fi,0.039,6.98,0.0,-1.0,41474.71590199996
+Will Dua Lipa perform at the 2026 FIFA World Cup Final halft,0.045,8.35,0.0,-1.0,6897.518761000004
+Will Maluma perform at the 2026 FIFA World Cup Final halftim,0.0712,0.89,0.0,-1.0,18480.416705999996
+Will Drake perform at the 2026 FIFA World Cup Final halftime,0.17,2.53,0.0,-1.0,36279.46222900001
+Will Burna Boy perform at the 2026 FIFA World Cup Final half,0.53,7.29,1.0,0.8867917604132123,26966.694453000004
+Will Bruno Mars perform at the 2026 FIFA World Cup Final hal,0.1,0.68,0.0,-1.0,11332.840683999999
+Will Rauw Alejandro perform at the 2026 FIFA World Cup Final,0.037,133.85,0.0,-1.0,5410.612160999999
+Will J Balvin perform at the 2026 FIFA World Cup Final halft,0.031,0.94,0.0,-1.0,22763.508065
+Will Coldplay perform at the 2026 FIFA World Cup Final halft,0.83,4.11,1.0,0.20481927710843384,170129.13218200023
+Will Karol G perform at the 2026 FIFA World Cup Final halfti,0.047,3.62,0.0,-1.0,15429.639574000006
+Will Bad Bunny perform at the 2026 FIFA World Cup Final half,0.1048,4.02,0.0,-1.0,28784.768696999978
+Will Rihanna perform at the 2026 FIFA World Cup Final halfti,0.023,8.48,0.0,-1.0,13476.175401
+Will China GDP growth in Q2 2026 be between 4.9% and 5.2%?,0.021,0.95,0.0,-1.0,31282.777036000025
+Will China GDP growth in Q2 2026 be between 4.6% and 4.9%?,0.66,0.95,0.0,-1.0,64031.08470699997
+Will China GDP growth in Q2 2026 be between 4.3% and 4.6%?,0.318,0.95,1.0,2.144654042561608,74730.28420699998
+Will the Bank of Korea increase the base rate after the July,0.93,4.03,1.0,0.07526881997918844,63275.12428400003
+Will the Bank of Korea make no change to the base rate after,0.06,3.67,0.0,-1.0,81055.17168000004
+Will England reach the Semifinals at the 2026 FIFA World Cup,0.36,0.25,1.0,1.7777777777777777,306761.14395899826
+Will Argentina reach the Semifinals at the 2026 FIFA World C,0.6,0.39,1.0,0.6666666666666667,665498.8337369738
+Will Norway reach the Semifinals at the 2026 FIFA World Cup?,0.15,0.25,0.0,-1.0,324285.5293109993
+Will Switzerland reach the Semifinals at the 2026 FIFA World,0.077,5.67,0.0,-1.0,225193.79635499982
+"GPT-5.6 released by July 10, 2026?",0.48,1.19,1.0,1.0833333229166668,245560.57334099952
+Will Delta Q2 passenger revenue per available seat mile be b,0.04,13.67,0.0,-1.0,8895.150099999997
+Will Delta Q2 passenger revenue per available seat mile be b,0.04,13.67,1.0,24.0,9773.925763
+Will Delta Q2 passenger load factor be between 83% and 85%?,0.22,0.66,1.0,3.545454545454546,5525.644941000001
+Will Maxime Vachier-Lagrave win the 2026 Super Rapid & Blitz,0.06,353.34,0.0,-1.0,37216.625103
+Will Nodirbek Abdusattorov win the 2026 Super Rapid & Blitz ,0.11,353.34,0.0,-1.0,59552.221338
+Will Alireza Firouzja win the 2026 Super Rapid & Blitz Croat,0.3216,24.63,1.0,2.1094118034645173,15646.175457000008
+Will the Reserve Bank of New Zealand make no change to the o,0.18,41.84,0.0,-1.0,22502.081332000005
+Will the Reserve Bank of New Zealand increase the official c,0.82,22.74,1.0,0.2195121951219512,26520.097044999995
+Will Ghana reach the Round of 16 at the 2026 FIFA World Cup?,0.26,3.87,0.0,-1.0,62713.48495299997
+Will Croatia reach the Round of 16 at the 2026 FIFA World Cu,0.362,2.25,0.0,-1.0,113875.88646400004
+Will Colombia reach the Round of 16 at the 2026 FIFA World C,0.53,0.16,1.0,0.8867920679958066,128554.22382600003
+Will Portugal reach the Round of 16 at the 2026 FIFA World C,0.6946,1.51,1.0,0.4396428878516738,280276.37992599997
+Will Algeria reach the Round of 16 at the 2026 FIFA World Cu,0.1512,0.82,0.0,-1.0,30211.943303999997
+Will Austria reach the Round of 16 at the 2026 FIFA World Cu,0.2658,1.07,0.0,-1.0,54788.39797200002
+Will Argentina reach the Round of 16 at the 2026 FIFA World ,0.72,0.09,1.0,0.38888888888888884,394097.5462430005
+Will Senegal reach the Round of 16 at the 2026 FIFA World Cu,0.2707,0.51,0.0,-1.0,158238.97277499983
+Will Cape Verde reach the Round of 16 at the 2026 FIFA World,0.06,0.44,0.0,-1.0,100261.59134500005
+Will Spain reach the Round of 16 at the 2026 FIFA World Cup?,0.72,1.51,1.0,0.38888897781636356,231413.3356729997
+Will Egypt reach the Round of 16 at the 2026 FIFA World Cup?,0.33,1.46,1.0,2.0303032029384855,129108.184636
+Will Belgium reach the Round of 16 at the 2026 FIFA World Cu,0.62,11.05,1.0,0.6129032258064517,172929.06993699993
+Will Australia reach the Round of 16 at the 2026 FIFA World ,0.34,4.87,0.0,-1.0,131821.60101600003
+Will USA reach the Round of 16 at the 2026 FIFA World Cup?,0.67,0.02,1.0,0.4925373134328357,313924.72087000066
+Will Bosnia and Herzegovina reach the Round of 16 at the 202,0.17,0.07,0.0,-1.0,69994.772109
+Will Switzerland reach the Round of 16 at the 2026 FIFA Worl,0.58,7.31,1.0,0.7241379310344829,110660.06240999994
+Trump's face on US gold coin by July 4?,0.05,1.24,0.0,-1.0,33709.196424000314
+"Will GPT-5.6 not be released by June 28, 2026?",0.189,4.65,1.0,4.291005291005291,329534.5154490007
+"Will GPT-5.6 be released between June 22 and June 28, 2026?",0.447,1.81,0.0,-1.0,421553.9653569974
+Will Ghana advance to the knockout stages at the 2026 FIFA W,0.47,2.3,1.0,1.127659574468085,785660.4230650001
+Will Croatia advance to the knockout stages at the 2026 FIFA,0.829,1.51,1.0,0.2062999012341955,260378.74864099952
+Will England advance to the knockout stages at the 2026 FIFA,0.9452,0.19,1.0,0.057974446903784393,409841.13827000005
+Will DR Congo advance to the knockout stages at the 2026 FIF,0.42,1.77,1.0,1.380952380952381,180384.00013799992
+Will Uzbekistan advance to the knockout stages at the 2026 F,0.31,1.34,0.0,-1.0,155532.28532199992
+Will Portugal advance to the knockout stages at the 2026 FIF,0.954,1.25,1.0,0.048218029350104885,727179.3955459994
+Will Algeria advance to the knockout stages at the 2026 FIFA,0.68,0.37,1.0,0.4705884705882728,222113.9037059999
+Will Austria advance to the knockout stages at the 2026 FIFA,0.8,0.01,1.0,0.25,157829.3784119998
+Will Iraq advance to the knockout stages at the 2026 FIFA Wo,0.13,3.41,0.0,-1.0,282341.3170129998
+Will Senegal advance to the knockout stages at the 2026 FIFA,0.72,4.55,1.0,0.3888890285493969,269847.84391199943
+Will Cape Verde advance to the knockout stages at the 2026 F,0.29,1.41,1.0,2.4482751866826535,181542.08950900007
+Will Saudi Arabia advance to the knockout stages at the 2026,0.35,2.2,0.0,-1.0,227684.88156299983
+Will Uruguay advance to the knockout stages at the 2026 FIFA,0.89,2.84,0.0,-1.0,99198.85526399997
+Will New Zealand advance to the knockout stages at the 2026 ,0.31,3.41,0.0,-1.0,171362.00740499998
+Will Egypt advance to the knockout stages at the 2026 FIFA W,0.71,2.79,1.0,0.40845070422535223,951491.8296989992
+Will Iran advance to the knockout stages at the 2026 FIFA Wo,0.632,2.58,0.0,-1.0,430569.50250300043
+Will Belgium advance to the knockout stages at the 2026 FIFA,0.955,1.18,1.0,0.04712041884816753,175959.06185799986
+Will Sweden advance to the knockout stages at the 2026 FIFA ,0.62,2.87,1.0,0.6129029687825589,325870.09788099956
+Will Japan advance to the knockout stages at the 2026 FIFA W,0.84,0.05,1.0,0.19047619047619047,569589.168122
+Will Netherlands advance to the knockout stages at the 2026 ,0.91,1.98,1.0,0.09890109890109877,682499.0639460002
+Will Curacao advance to the knockout stages at the 2026 FIFA,0.1,0.12,0.0,-1.0,230302.76784299998
+Will Ivory Coast advance to the knockout stages at the 2026 ,0.78,0.86,1.0,0.28205128205128194,88392.06503499995
+Will Ecuador advance to the knockout stages at the 2026 FIFA,0.86,0.85,1.0,0.16279069023796655,186333.95295699948
+Will Paraguay advance to the knockout stages at the 2026 FIF,0.41,1.76,1.0,1.4390243902439024,172103.164278
+Will Australia advance to the knockout stages at the 2026 FI,0.41,0.91,1.0,1.4390241969066189,170791.52401600004
+Will Scotland advance to the knockout stages at the 2026 FIF,0.64,0.08,0.0,-1.0,558378.7796699958
+Will South Korea advance to the knockout stages at the 2026 ,0.94,3.66,0.0,-1.0,1480115.2030369977
+Colombia vs. Portugal: Both Teams to Score,0.5459,203.71,0.0,-1.0,1136430.294468997
+DR Congo vs. Uzbekistan: Both Teams to Score,0.39,290.48,1.0,1.5641025641025639,224390.90702800016
+Exact Score: Any Other Score?,0.92,320.8,0.0,-1.0,12944.948228000001
+Exact Score: DR Congo 3 - 3 Uzbekistan?,0.09,320.77,0.0,-1.0,171100.08596499995
+Exact Score: DR Congo 2 - 3 Uzbekistan?,0.09,320.8,0.0,-1.0,15992.591250000001
+Exact Score: DR Congo 2 - 2 Uzbekistan?,0.03,307.16,0.0,-1.0,36373.80851699999
+Exact Score: DR Congo 1 - 3 Uzbekistan?,0.09,320.77,0.0,-1.0,16409.443637
+Exact Score: DR Congo 3 - 0 Uzbekistan?,0.03,42.24,0.0,-1.0,66696.67757599993
+Exact Score: DR Congo 2 - 1 Uzbekistan?,0.05,307.16,0.0,-1.0,103742.77350099995
+Exact Score: DR Congo 1 - 2 Uzbekistan?,0.05,307.16,0.0,-1.0,41621.034236
+Exact Score: DR Congo 2 - 0 Uzbekistan?,0.04,307.16,0.0,-1.0,119537.5907329995
+Exact Score: DR Congo 0 - 2 Uzbekistan?,0.04,307.16,0.0,-1.0,30730.993406999994
+Exact Score: DR Congo 1 - 0 Uzbekistan?,0.06,97.98,0.0,-1.0,77862.241104
+Exact Score: DR Congo 0 - 1 Uzbekistan?,0.07,307.16,0.0,-1.0,80968.17954199998
+Exact Score: Any Other Score?,0.92,320.8,0.0,-1.0,24553.91947500001
+Exact Score: Colombia 2 - 3 Portugal?,0.0618,41.03,0.0,-1.0,137372.78046799984
+Exact Score: Colombia 2 - 2 Portugal?,0.04,303.59,0.0,-1.0,121518.16799299995
+Exact Score: Colombia 2 - 1 Portugal?,0.16,320.8,0.0,-1.0,64946.42984799997
+Exact Score: Colombia 1 - 2 Portugal?,0.33,27.29,0.0,-1.0,175488.70871399922
+Exact Score: Colombia 0 - 3 Portugal?,0.02,42.17,0.0,-1.0,144081.437061
+Exact Score: Colombia 2 - 0 Portugal?,0.06,74.21,0.0,-1.0,42620.37367999998
+Exact Score: Colombia 1 - 1 Portugal?,0.26,31.72,0.0,-1.0,145924.24868399964
+Exact Score: Colombia 0 - 2 Portugal?,0.06,303.59,0.0,-1.0,164853.67318300006
+Exact Score: Colombia 1 - 0 Portugal?,0.05,303.59,0.0,-1.0,140332.2000149999
+Exact Score: Colombia 0 - 1 Portugal?,0.08,303.59,0.0,-1.0,129470.52169199994
+Exact Score: Colombia 0 - 0 Portugal?,0.12,320.76,1.0,7.333333333333334,367224.52905300027
+Will DR Congo vs. Uzbekistan end in a draw?,0.29,6.62,0.0,-1.0,1355263.7187650003
+Uruguay vs. Cabo Verde: Both Teams to Score,0.45,195.74,1.0,1.2222222222222223,224351.12967800035
+Exact Score: Uruguay 3 - 1 Cabo Verde?,0.16,175.26,0.0,-1.0,133702.62064799987
+Exact Score: Uruguay 2 - 2 Cabo Verde?,0.03,175.04,1.0,32.333333333333336,198122.6274519996
+Exact Score: Uruguay 1 - 3 Cabo Verde?,0.09,175.26,0.0,-1.0,51220.13829599998
+Exact Score: Uruguay 3 - 0 Cabo Verde?,0.12,175.26,0.0,-1.0,120671.31112599999
+Exact Score: Uruguay 2 - 1 Cabo Verde?,0.19,175.26,0.0,-1.0,186948.42460899995
+Exact Score: Uruguay 1 - 2 Cabo Verde?,0.13,175.26,0.0,-1.0,152917.181532
+Exact Score: Uruguay 0 - 3 Cabo Verde?,0.09,175.26,0.0,-1.0,73164.58033400001
+Exact Score: Uruguay 2 - 0 Cabo Verde?,0.09,175.26,0.0,-1.0,143241.01511499973
+Exact Score: Uruguay 1 - 1 Cabo Verde?,0.21,175.26,0.0,-1.0,78055.62696599995
+Exact Score: Uruguay 1 - 0 Cabo Verde?,0.09,159.85,0.0,-1.0,132038.86142799992
+Exact Score: Uruguay 0 - 1 Cabo Verde?,0.03,159.86,0.0,-1.0,142003.4702189997
+"Will ""you seem pretty sad for a girl so in love"" - Olivia Ro",0.05,48.05,1.0,18.999999999999982,13237.930813
+"Will ""you seem pretty sad for a girl so in love"" - Olivia Ro",0.25,129.65,0.0,-1.0,17127.379126000003
+"Will ""you seem pretty sad for a girl so in love"" - Olivia Ro",0.19,136.26,0.0,-1.0,6396.800529
+"Will ""you seem pretty sad for a girl so in love"" - Olivia Ro",0.4206,61.56,0.0,-1.0,5371.626361
+Will the Bank of Russia make no change to the key rate after,0.11,0.49,0.0,-1.0,47356.73179600001
+Will the Bank of Russia decrease the key rate after the June,0.89,0.49,1.0,0.12359550561797761,64018.84362499996
+Canada vs. Qatar: Both Teams to Score,0.34,74.56,0.0,-1.0,1265405.3048439962
+Exact Score: Canada 3 - 3 Qatar?,0.07,31.54,0.0,-1.0,65516.73502099994
+Will the Reserve Bank of Australia increase the target for t,0.021,12.16,0.0,-1.0,24959.052070000005
+Will the Reserve Bank of Australia make no change to the tar,0.972,29.4,1.0,0.028806584362139898,21479.37013599999
+Bank of Japan increases interest rates by 25 bps after the J,0.886,0.28,1.0,0.12866817359578908,240577.71511999983
+No change in Bank of Japan’s interest rates after the June 2,0.11,17.79,0.0,-1.0,264593.2385670001
+Will Arya Azma win the 2026 Oklahoma Governor Democratic pri,0.03,11.0,0.0,-1.0,34588.36781599999
+Will Cyndi Munson win the 2026 Oklahoma Governor Democratic ,0.89,5.19,1.0,0.12359550561797761,31901.94802099999
+Saudi Arabia vs. Uruguay: Both Teams to Score,0.47,10.5,1.0,1.1276596129470358,482506.8971170017
+Exact Score: Any Other Score?,0.95,31.3,0.0,-1.0,54015.310737
+Exact Score: Saudi Arabia 0 - 3 Uruguay?,0.16,31.27,0.0,-1.0,60989.87911799987
+Will CD La Serena win on 2026-06-12?,0.75,104.9,0.0,-1.0,8072.239893999999
+Will Audax CS Italiano vs. CD La Serena end in a draw?,0.77,104.9,1.0,0.2987012987012987,11670.388241000002
+Will Audax CS Italiano win on 2026-06-12?,0.82,102.54,0.0,-1.0,32592.910610999992
+Will global temperature increase by between 1.15ºC and 1.19º,0.0562,1.97,0.0,-1.0,39540.45275399999
+Will global temperature increase by between 1.10ºC and 1.14º,0.7574,2.55,1.0,0.3202790035665404,26674.851334000017
+Will global temperature increase by less than 1.10ºC in May ,0.2122,1.98,0.0,-1.0,63688.645741
+Will May 2026 be the 3rd hottest on record?,0.0805,2.95,0.0,-1.0,78913.43809699999
+Will May 2026 be the 2nd hottest on record?,0.91,2.95,1.0,0.09890109890109877,14779.212257000008
+Will May 2026 be the 1st hottest on record?,0.02,2.95,0.0,-1.0,30794.592099
+Will the Bank of Canada announce no change at the June meeti,0.978,17.1,1.0,0.022494892648491804,42114.78679400002
+Will any World Cup game scheduled in the U.S. be relocated a,0.08,0.84,0.0,-1.0,22627.830989000006
+Will Saudi Arabia win on 2026-06-09?,0.56,186.93,0.0,-1.0,146338.51503199985
+Will Curaçao win on 2026-06-06?,0.49,110.56,1.0,1.0408163265306123,34716.30532900001
+Will Argentina win on 2026-06-06?,0.58,110.51,1.0,0.7241379310344827,417583.6741359998
+"Will ""Liberation"" win Best Play at the 2026 Tony Awards?",0.77,5.46,1.0,0.2987012987012987,15227.247145000001
+"Will ""Giant"" win Best Play at the 2026 Tony Awards?",0.1542,19.38,0.0,-1.0,5369.981720000001
+Will Movistar KOI win LEC 2026 Spring?,0.13,26.9,0.0,-1.0,10770.112361000003
+Will Karmine Corp win LEC 2026 Spring?,0.27,11.64,0.0,-1.0,9649.731977000007
+Will G2 Esports win LEC 2026 Spring?,0.6621,3.43,1.0,0.5103768062651732,14053.180374000005
+Will Secret Whales win LCP 2026 Split 2?,0.7,14.18,1.0,0.4285714285714286,5654.361761999999
+Will Venezuela win on 2026-06-06?,0.44,109.5,0.0,-1.0,132465.88324300002
+Will Bhuvneshwar Kumar win the 2026 IPL purple cap?,0.93,11.77,0.0,-1.0,5422.661988999998
+Will Yashasvi Jaiswal win the 2026 IPL Orange Cap?,0.05,30.33,0.0,-1.0,20406.725044000003
+Will Sai Sudharsan win the 2026 IPL Orange Cap?,0.14,60.15,0.0,-1.0,7273.094624000006
+Will Shubman Gill win the 2026 IPL Orange Cap?,0.2,16.11,0.0,-1.0,10803.65786
+Will Vaibhav Sooryavanshi win the 2026 IPL Orange Cap?,0.07,9.4,1.0,13.285714285714285,11136.824164999996
+"Arne Slot out as Liverpool Head Coach by May 31, 2026?",0.103,3.48,1.0,8.709958358707636,101675.11802300006
+Will CDOriente Petrolero win on 2026-05-31?,0.84,148.24,0.0,-1.0,6376.275562999998
+Will Angel City FC win on 2026-05-31?,0.88,290.65,0.0,-1.0,7113.154202
+"Russia x Ukraine ceasefire by May 31, 2026?",0.022,1.34,0.0,-1.0,59353.859586
+Will Brazil’s Q1 2026 GDP growth rate (YoY) be less than 0.7,0.025,117.32,0.0,-1.0,18091.29440199998
+Will T1 qualify for EWC 2026?,0.6,178.92,1.0,0.6666666666666667,5183.255293
+Will Chip Roy win the Texas Republican primary runoff for At,0.44,220.22,0.0,-1.0,8812.559503999999
+Will Mayes Middleton win the Texas Republican primary runoff,0.71,88.48,1.0,0.40845070422535223,7799.645305999999
+Will Jon Bonck be the Republican Nominee for TX-38?,0.947,30.9,1.0,0.05596620908130956,21601.67990099999
+Will Tom Sell be the Republican Nominee for TX-19?,0.976,3.71,1.0,0.024590163934426146,58614.35328599999
+Will Abraham Enriquez be the Republican Nominee for TX-19?,0.023,9.18,0.0,-1.0,18093.990848
+Will Colin Allred be the Democratic nominee for TX-33?,0.7943,3.0,1.0,0.25895910661279564,58303.746270999996
+Will Julie Johnson be the Democratic nominee for TX-33?,0.1604,18.79,0.0,-1.0,43218.95912500002
+Will Christian Menefee be the Democratic nominee for TX-18?,0.914,35.79,1.0,0.09409190371991238,26532.78800599999
+Will Al Green be the Democratic nominee for TX-18?,0.126,5.51,0.0,-1.0,15182.373333999996
+Will Sholdon Daniels be the Republican Nominee for TX-30?,0.14,6.5,0.0,-1.0,14164.263635000014
+"Will ""MINOTAUR by Andrey ZVYAGINTSEV"" win Palme d'Or at the ",0.69,29.72,0.0,-1.0,18561.718561
+"Will ""FATHERLAND by Pawel PAWLIKOWSKI"" win Palme d'Or at the",0.1188,43.46,0.0,-1.0,6617.5000390000005
+"Will ""FJORD by Cristian MUNGIU"" win Palme d'Or at the 2026 C",0.11,25.15,1.0,8.090909090909092,24635.28266700001
+"Will ""HOPE by NA Hong-jin"" win Palme d'Or at the 2026 Cannes",0.26,5.88,0.0,-1.0,12276.974397000002
+"Will ""SHEEP IN THE BOX by KORE-EDA Hirokazu"" win Palme d'Or ",0.0851,27.59,0.0,-1.0,5849.393962000002
+"Will ""ALL OF A SUDDEN by HAMAGUCHI Ryusuke"" win Palme d'Or a",0.15,5.61,0.0,-1.0,7255.347924000002
+"Will ""LA BOLA NEGRA by Javier CALVO & Javier AMBROSSI"" win P",0.069,16.09,0.0,-1.0,20414.799742
+"Will ""PARALLEL TALES by Asghar FARHADI"" win Palme d'Or at th",0.07,147.43,0.0,-1.0,57372.99388300001
+Will Justin Briner as Izuku Midoriya (My Hero Academia FINAL,0.43,8.8,0.0,-1.0,10246.285246
+Will Alexis Tipton as Reze (Chainsaw Man – The Movie: Reze A,0.09,72.47,0.0,-1.0,11058.814179000003
+Will Marta Barbará as Kaoruko Waguri (The Fragrant Flower Bl,0.26,423.12,0.0,-1.0,6467.080967
+Will Bruno Sangregório as Levi Ackerman (Attack on Titan: TH,0.56,277.76,0.0,-1.0,13599.474263000002
+Will Raafat Bazo as Yuri Briar (SPY x FAMILY Season 3) win B,0.09,67.19,0.0,-1.0,17157.169203999998
+Will Hamoud Abu Hassoun as Loid Forger (Childhood) (SPY x FA,0.2,428.81,0.0,-1.0,19320.142378999997
+Will Chiaki Kobayashi as Yoshiki Tsujinaka (The Summer Hikar,0.05,277.75,0.0,-1.0,7236.781850000001
+"Will ""IRIS OUT"" by Kenshi Yonezu (Chainsaw Man – The Movie: ",0.87,0.64,1.0,0.14942528735632177,7376.066285999999
+"Will ""CITY THE ANIMATION"" win Best Comedy Anime at the 2026 ",0.23,248.86,0.0,-1.0,5696.486567
+"Will ""Gachiakuta"" win Best Animation at the 2026 Crunchyroll",0.2096,23.06,0.0,-1.0,11293.021066000001
+"Will ""DIGIMON BEATBREAK"" win Best Original Anime at the 2026",0.05,57.6,0.0,-1.0,5197.508005999999
+"Will ""SAKAMOTO DAYS"" win Best New Series at the 2026 Crunchy",0.07,87.78,0.0,-1.0,9896.576674999998
+"Will ""The Fragrant Flower Blooms With Dignity"" win Best New ",0.0438,57.53,0.0,-1.0,5302.8589249999995
+"Will ""My Hero Academia FINAL SEASON"" win Anime of the Year a",0.77,4.61,1.0,0.2987012987012987,25369.58133099998
+"Will ""Gachiakuta"" win Anime of the Year at the 2026 Crunchyr",0.09,4.61,0.0,-1.0,12012.76742099999
+"Will Sister Sage die in ""The Boys: Season 5""?",0.33,0.12,0.0,-1.0,35661.169783
+"Will Ashley Barrett die in ""The Boys: Season 5""?",0.3328,10.64,0.0,-1.0,28935.680904
+"Will The Deep die in ""The Boys: Season 5""?",0.84,1.79,1.0,0.19047619047619047,109704.45836799998
+"Will Soldier Boy die in ""The Boys: Season 5""?",0.29,8.9,0.0,-1.0,76429.84876299999
+"Will Ryan Butcher die in ""The Boys: Season 5""?",0.12,2.96,0.0,-1.0,62318.977401999975
+"Will Homelander die in ""The Boys: Season 5""?",0.75,1.47,1.0,0.33333333333333326,245416.08810999992
+"Will Mother's Milk die in ""The Boys: Season 5""?",0.31,6.63,0.0,-1.0,68965.25636999993
+"Will Kimiko Miyashiro die in ""The Boys: Season 5""?",0.46,6.91,0.0,-1.0,46779.96624500003
+"Will Frenchie die in ""The Boys: Season 5""?",0.8859,2.77,1.0,0.12877573815234844,201231.18442100027
+"Will Hughie Campbell die in ""The Boys: Season 5""?",0.13,8.31,0.0,-1.0,35709.12549200001
+"Will Annie January (Starlight) die in ""The Boys: Season 5""?",0.18,27.32,0.0,-1.0,36640.22325900002
+"Will Billy Butcher die in ""The Boys: Season 5""?",0.9,3.48,1.0,0.11111111111111116,109863.85168499997
+Will Cirie Fields win Survivor Season 50?,0.0208,6.15,0.0,-1.0,95052.68018100006
+Will Jonathan Young win Survivor Season 50?,0.025,6.15,0.0,-1.0,110070.31803800003
+Will Joe Hunter win Survivor Season 50?,0.0383,6.15,0.0,-1.0,117393.44945699998
+Will Aubry Bracco win Survivor Season 50?,0.89,0.91,1.0,0.12359550561797761,444544.94242400007
+Will Manchester City win the 2025-2026 FA Cup?,0.68,6.32,1.0,0.47058823529411753,134073.54872300013
+Will Chelsea win the 2025-2026 FA Cup?,0.3,10.29,0.0,-1.0,150460.59383300014
+Will Toronto FC win on 2026-05-16?,0.08,237.86,0.0,-1.0,22762.34525599999
+Will UK GDP growth in Q1 2026 be between 0.6% and 0.9%?,0.04,329.3,0.0,-1.0,16309.108391000002
+Will UK GDP growth in Q1 2026 be between 0% and 0.3%?,0.06,21.08,0.0,-1.0,11246.813675000005
+Will Ukraine advance through the second Eurovision Semi-Fina,0.94,26.11,1.0,0.06382978723404253,44647.530857
+Will Switzerland advance through the second Eurovision Semi-,0.47,52.89,0.0,-1.0,102763.38847399995
+Will Romania advance through the second Eurovision Semi-Fina,0.8599,45.08,1.0,0.16288885090222016,28172.18210299999
+Will Norway advance through the second Eurovision Semi-Final,0.77,25.74,1.0,0.2987012987012987,48942.118901
+Will Malta advance through the second Eurovision Semi-Final?,0.85,26.38,1.0,0.17647058823529416,35835.17337199997
+Will Luxembourg advance through the second Eurovision Semi-F,0.35,16.14,0.0,-1.0,65414.444930999845
+Will Latvia advance through the second Eurovision Semi-Final,0.44,5.7,0.0,-1.0,32362.171985000063
+Will Denmark advance through the second Eurovision Semi-Fina,0.955,38.72,1.0,0.047120424111181114,66714.92590399999
+Will Czechia advance through the second Eurovision Semi-Fina,0.67,29.07,1.0,0.4925373134328359,104026.74785699924
+Will Cyprus advance through the second Eurovision Semi-Final,0.77,24.88,1.0,0.2987012987012987,104984.66493200003
+Will Bulgaria advance through the second Eurovision Semi-Fin,0.82,44.97,1.0,0.2195121951219512,150832.62676399987
+Will Azerbaijan advance through the second Eurovision Semi-F,0.09,25.44,0.0,-1.0,24754.350295
+Will Australia advance through the second Eurovision Semi-Fi,0.941,38.71,1.0,0.06269931348047297,120152.33883200004
+Will Armenia advance through the second Eurovision Semi-Fina,0.31,30.74,0.0,-1.0,67531.61517999995
+Will Albania advance through the second Eurovision Semi-Fina,0.64,26.12,1.0,0.5625,72703.46213699994
+Will Inter Miami CF win on 2026-05-13?,0.66,66.82,1.0,0.5151515151515151,870041.7686760016
+Will CR Vasco da Gama win on 2026-05-13?,0.59,130.95,0.0,-1.0,7765.010620000001
+Will Jordan McCullough win American Idol Season 24?,0.141,60.91,0.0,-1.0,13728.473919000005
+Will Hannah Harper win American Idol Season 24?,0.44,12.37,1.0,1.272727272727273,102874.26414500002
+Will Minnesota United FC win on 2026-05-10?,0.84,92.16,0.0,-1.0,43572.70174599998
+Will the US lose more than 50k jobs in April?,0.086,50.55,0.0,-1.0,6302.114247000001
+Will the April 2026 unemployment rate be ≥4.7%?,0.029,16.88,0.0,-1.0,10858.738594999995
+Will the April 2026 unemployment rate be 4.6%?,0.041,16.88,0.0,-1.0,8943.925845000002
+Will the April 2026 unemployment rate be 4.5%?,0.11,16.88,0.0,-1.0,8163.893562
+Will the April 2026 unemployment rate be 4.4%?,0.17,14.97,0.0,-1.0,16727.522891999997
+Will the April 2026 unemployment rate be 4.3%?,0.33,13.31,1.0,2.0303030303030307,14409.680040000008
+Will the April 2026 unemployment rate be 4.2%?,0.19,16.88,0.0,-1.0,9140.955767999998
+Will the April 2026 unemployment rate be 4.1%?,0.07,9.3,0.0,-1.0,9130.058415999998
+Will the April 2026 unemployment rate be 4.0%?,0.07,9.34,0.0,-1.0,6457.884841
+Will the April 2026 unemployment rate be ≤3.9%?,0.039,16.88,0.0,-1.0,6316.330899000006
+Will Crystal Palace reach the UEFA Conference League final?,0.69,54.32,1.0,0.44927536336904006,21783.202058999996
+Will Shakhtar Donetsk reach the UEFA Conference League final,0.32,30.6,0.0,-1.0,6707.719965000001
+Will Strasbourg reach the UEFA Conference League final?,0.55,21.06,0.0,-1.0,5141.906309999999
+Will Montreal Canadiens advance to Round 2 of the 2026 NHL P,0.53,0.8,1.0,0.8867924588821645,29672.536797
+Will Tampa Bay Lightning advance to Round 2 of the 2026 NHL ,0.7,18.41,0.0,-1.0,15284.787063999991
+Will Brian Poindexter be the Democratic nominee for OH-07?,0.82,1.33,1.0,0.2195121951219512,9611.800266999999
+Will Eric Conroy be the Republican nominee for OH-01?,0.95,2.05,1.0,0.05263157894736836,14644.8367
+Will André Carson be the Democratic nominee for IN-07?,0.97,54.0,1.0,0.030927835051546504,11821.257187000003
+Will the Reserve Bank of Australia increase the target for t,0.73,18.1,1.0,0.36986301369863006,46531.69537700003
+Will the Reserve Bank of Australia make no change to the tar,0.3208,17.75,0.0,-1.0,28519.514372999987
+Will Josh Williams be the Republican nominee for OH-09?,0.0754,0.79,0.0,-1.0,12643.528816
+Will Madison Sheahan be the Republican nominee for OH-09?,0.0652,0.79,0.0,-1.0,9041.918395
+Will Derek Merrin be the Republican nominee for OH-09?,0.82,0.79,1.0,0.2195121951219512,16125.97081
+Will Vivek Ramaswamy win the 2026 Ohio Governor Republican p,0.9779,1.69,1.0,0.022551265439994417,182991.34203600022
+"Will Donald Trump publicly insult someone on April 29, 2026?",0.79,5.46,1.0,0.26582278481012644,21415.448873000016
+"Will Powell say ""Crypto"" or ""Bitcoin"" during April press con",0.1039,6.81,0.0,-1.0,207211.69619899997
+"Will Powell say ""Good Afternoon"" during April press conferen",0.9721,0.55,1.0,0.02873563219041153,312686.6656629998
+"Will Powell say ""Shut down"" or ""Shutdown"" during April press",0.33,2.43,0.0,-1.0,19469.322157000002
+"Will Powell say ""Goods inflation"" during April press confere",0.63,11.01,0.0,-1.0,12281.314193000004
+"Will Powell say ""Tariff inflation"" during April press confer",0.57,1.55,0.0,-1.0,18525.45294
+"Will Powell say ""Simulation"" during April press conference?",0.16,25.99,0.0,-1.0,15359.866456000012
+"Will Powell say ""Data Center"" during April press conference?",0.25,3.6,1.0,3.0,28674.17434199999
+"Will Powell say ""AI"" or ""Artificial Intelligence"" during Apr",0.74,1.43,0.0,-1.0,49124.37060000006
+"Will Powell say ""Pandemic"" during April press conference?",0.69,4.9,1.0,0.4492753623188408,54891.03474199999
+"Will Powell say ""Governor"" during April press conference?",0.42,3.12,1.0,1.380952354875284,27667.316677
+"Will Powell say ""War"" during April press conference?",0.56,0.7,0.0,-1.0,32310.19179800002
+"Will Powell say ""Successor"" during April press conference?",0.6,6.42,0.0,-1.0,19480.870562000022
+"Will Powell say ""Inflation"" 60+ times during April press con",0.21,3.07,0.0,-1.0,27306.608364999996
+"Will Powell say ""Inflation"" 50+ times during April press con",0.57,11.01,0.0,-1.0,41677.59844499999
+"Will Powell say ""Inflation"" 40+ times during April press con",0.72,7.81,0.0,-1.0,95195.28186299991
+Will CA Rosario Central win on 2026-04-28?,0.07,103.54,1.0,13.285714285714285,15800.311286999995
+Will three people dissent the April Fed decision?,0.06,0.04,0.0,-1.0,11235.884542999995
+Will two people dissent the April Fed decision?,0.21,11.2,0.0,-1.0,20386.974758999997
+Will one person dissent the April Fed decision?,0.62,0.04,1.0,0.6129031589490141,684875.5431609997
+Will no one dissent the April Fed decision?,0.044,7.73,0.0,-1.0,26345.021400999998
+Will CA San Lorenzo de Almagro vs. Santos FC end in a draw?,0.07,68.9,1.0,13.285714285714295,59566.78132100001
+Will San Francisco 49ers draft Ty Simpson in the 2026 pro fo,0.0204,22.04,0.0,-1.0,17184.528234000012
+Will Kansas City Chiefs draft Ty Simpson in the 2026 pro foo,0.0619,20.48,0.0,-1.0,31418.73581099999
+Will Houston Texans draft Ty Simpson in the 2026 pro footbal,0.021,28.17,0.0,-1.0,109016.62639899993
+Will Cincinnati Bengals draft Ty Simpson in the 2026 pro foo,0.02,13.46,0.0,-1.0,73427.56615599999
+Will Carolina Panthers draft Ty Simpson in the 2026 pro foot,0.0397,15.48,0.0,-1.0,18020.580892000005
+Will Philadelphia Union win on 2026-04-25?,0.08,100.79,0.0,-1.0,8949.988171999998
+Will Columbus Crew vs. Philadelphia Union end in a draw?,0.07,100.79,0.0,-1.0,9694.762647000003
+Will Columbus Crew win on 2026-04-25?,0.0991,100.79,1.0,9.092687945785132,64322.32519599998
+Will Mazatlán FC win on 2026-04-25?,0.08,100.26,0.0,-1.0,35542.16914699998
+Will Tigres de la UANL win on 2026-04-25?,0.08,100.26,1.0,11.5,6663.101162000001
+Will Pumas de la UNAM win on 2026-04-25?,0.07,100.27,1.0,13.285714285714285,47676.22620799998
+Will CF Pachuca vs. Pumas de la UNAM end in a draw?,0.07,100.26,0.0,-1.0,9014.207804000001
+Will CF Pachuca win on 2026-04-25?,0.07,100.25,0.0,-1.0,13399.747161000005
+Will South Korea GDP growth in Q1 2026 be at least 2.5%?,0.72,5.6,1.0,0.3888889556327193,9148.510843
+Will South Korea GDP growth in Q1 2026 be less than 0%?,0.0536,8.42,0.0,-1.0,17110.763783999995
+Will the Pittsburgh Steelers draft a quarterback in the firs,0.15,93.09,0.0,-1.0,11100.132345999995
+Will David Bailey be the third pick in the 2026 NFL draft?,0.24,5.44,0.0,-1.0,21495.961912000006
+Will Jeremiyah Love be the third pick in the 2026 NFL draft?,0.081,151.92,1.0,11.345679012345679,36143.46242999999
+Will Arvell Reese be the third pick in the 2026 NFL draft?,0.22,23.53,0.0,-1.0,27372.32765899999
+Will Rueben Bain Jr. be the third pick in the 2026 NFL draft,0.043,88.25,0.0,-1.0,6834.117138
+Will Francis Mauigoa be the third pick in the 2026 NFL draft,0.237,116.1,0.0,-1.0,5156.545847000002
+Will David Bailey be the second pick in the 2026 NFL draft?,0.35,0.15,1.0,1.8571428571428572,214861.52840000007
+Will Arvell Reese be the second pick in the 2026 NFL draft?,0.55,0.15,0.0,-1.0,158554.045939
+Will Sonny Styles be the second pick in the 2026 NFL draft?,0.02,0.15,0.0,-1.0,81709.27815500004
+Will Reuben Bain Jr. be the second pick in the 2026 NFL draf,0.02,0.15,0.0,-1.0,175292.4067099999
+Will Fernando Mendoza be the second pick in the 2026 NFL dra,0.02,0.15,0.0,-1.0,175492.14989499995
+Will Jeremiyah Love go top 10 in the 2026 Pro Football draft,0.967,2.33,1.0,0.03412616339193386,17901.288522999977
+Will Atlanta United FC win on 2026-04-22?,0.4,128.79,0.0,-1.0,179643.05078700013
+Will New York Red Bulls win on 2026-04-22?,0.58,98.35,0.0,-1.0,77728.12606999998
+Will Columbus Crew win on 2026-04-22?,0.32,98.36,1.0,2.125,337288.8211299999
+Will Toronto FC win on 2026-04-22?,0.69,98.36,0.0,-1.0,114772.76138399997
+Will CDP Junior FC win on 2026-04-19?,0.48,209.62,1.0,1.0833333333333335,9018.816876999996
+Will Atlas FC win on 2026-04-19?,0.08,119.63,1.0,11.5,34160.52574699997
+Will Club Santos Laguna win on 2026-04-19?,0.51,204.14,0.0,-1.0,16278.172336999996
+Will San Jose Earthquakes win on 2026-04-19?,0.08,189.22,1.0,11.5,145013.27421299997
+Will Los Angeles FC vs. San Jose Earthquakes end in a draw?,0.08,185.56,0.0,-1.0,38972.39656399999
+Will Los Angeles FC win on 2026-04-19?,0.07,139.5,0.0,-1.0,89297.77104800002
+Will América de Cali win on 2026-04-19?,0.55,136.35,1.0,0.8181818181818181,24436.802204000007
+Will CD Tondela win on 2026-04-19?,0.06,11.58,0.0,-1.0,29925.012875999993
+Will FC Porto win on 2026-04-19?,0.96,84.33,1.0,0.04166666666666674,147431.47000499995
+Will China GDP growth in Q1 2026 be between 5.0% and 5.5%?,0.446,7.55,1.0,1.2423250892006115,87661.88724699996
+Will China GDP growth in Q1 2026 be between 4.5% and 5.0%?,0.54,0.59,0.0,-1.0,77736.64463900002
+Will CA Juventud win on 2026-04-16?,0.05,43.94,0.0,-1.0,19452.248768999998
+Will Argentina’s monthly inflation in March 2026 be between ,0.049,0.63,1.0,19.408163265306104,20495.59664499999
+Will Argentina’s monthly inflation in March 2026 be between ,0.72,0.63,0.0,-1.0,38156.028970000014
+Will Argentina’s monthly inflation in March 2026 be between ,0.13,23.76,0.0,-1.0,8842.510461999997
+Will Trump attend UFC 327?,0.1656,81.38,1.0,5.038647342995169,178885.231604
+Will the Reserve Bank of India increase the policy repo rate,0.2,38.61,0.0,-1.0,15693.564148
+Will the Reserve Bank of India make no change to the policy ,0.84,0.32,1.0,0.19047619571995478,21009.469112
+Will the Reserve Bank of India decrease the policy repo rate,0.05,4.54,0.0,-1.0,6773.205137000003
+Will Austin FC win on 2026-04-04?,0.53,82.83,0.0,-1.0,78325.46395400002
+Will Inter Miami CF vs. Austin FC end in a draw?,0.49,82.83,1.0,1.0408163265306123,45026.71626000002
+Will Inter Miami CF win on 2026-04-04?,0.49,82.83,0.0,-1.0,218243.52271399967
+Will New York City FC win on 2026-04-04?,0.87,23.12,0.0,-1.0,306526.8423640003
+Will the Bank of Israel make no change to the Bank of Israel,0.91,0.23,1.0,0.09890109890109877,21910.032683000005
+Will the Bank of Israel decrease the Bank of Israel Interest,0.07,0.58,0.0,-1.0,11472.767684000004
+Will Mexico’s February unemployment rate be 2.6%?,0.0589,81.15,1.0,15.978281402803471,9806.372619
+Will Mexico’s February unemployment rate be 2.5%?,0.26,81.22,0.0,-1.0,7081.106414000001
+Will Mexico’s February unemployment rate be less than or equ,0.5543,16.12,0.0,-1.0,20792.229785000007
+Will Croatia win on 2026-03-26?,0.36,3.94,1.0,1.7777777777777777,112085.29813200017
+Will Colombia vs. Croatia end in a draw?,0.85,4.06,0.0,-1.0,29305.855061000006
+Will Colombia win on 2026-03-26?,0.35,0.2,0.0,-1.0,125895.88981999985
+Brazil vs. France: Both Teams to Score,0.98,108.3,1.0,0.020408163265306145,58360.20352300002
+Will France win on 2026-03-26?,0.1,70.89,1.0,9.000000000000002,446208.1835119992
+Will Brazil vs. France end in a draw?,0.8,70.89,0.0,-1.0,64844.18445000004
+Will Brazil win on 2026-03-26?,0.48,70.96,0.0,-1.0,206836.29868999988
+Will Republic of Ireland win on 2026-03-26?,0.93,313.8,0.0,-1.0,480343.8788280002
+Will Czechia win on 2026-03-26?,0.6,68.45,0.0,-1.0,1274578.3072510003
+Will Northern Ireland win on 2026-03-26?,0.08,68.39,0.0,-1.0,311076.103617
+Will Italy vs. Northern Ireland end in a draw?,0.17,32.76,0.0,-1.0,101343.18647099998
+Will Italy win on 2026-03-26?,0.71,18.05,1.0,0.40845070422535223,654124.7072110005
+Will Poland win on 2026-03-26?,0.62,30.98,1.0,0.612903306451617,411470.71809700015
+Will Slovakia win on 2026-03-26?,0.58,49.8,0.0,-1.0,351572.03527800087
+Will Denmark win on 2026-03-26?,0.76,30.99,1.0,0.3157895438019429,423384.772017001
+Will Wales win on 2026-03-26?,0.58,49.8,0.0,-1.0,271621.7456040001
+Will Sweden win on 2026-03-26?,0.4394,80.52,1.0,1.2758346622030547,526911.7770319993
+Will Ukraine vs. Sweden end in a draw?,0.33,25.71,0.0,-1.0,200250.395175
+Will Ukraine win on 2026-03-26?,0.34,2.15,0.0,-1.0,447781.01378499955
+"Will Powell say ""Inflation"" 60+ times during March press con",0.14,22.23,0.0,-1.0,21911.795938000025
+Will Christopher Waller dissent the next Fed Decision?,0.5303,48.44,0.0,-1.0,18135.87241500001
+Will the Bank of Canada announce a 25 bps decrease at the Ma,0.02,9.02,0.0,-1.0,64938.43142399997
+Will Margot Robbie attend the Oscars?,0.7,6.92,0.0,-1.0,16572.967070000006
+"Will ""Sinners"" win exactly 8 awards at the Oscars?",0.0403,35.86,0.0,-1.0,19962.717634000004
+Will Frankenstein win Best Sound at the 98th Academy Awards?,0.03,4.94,0.0,-1.0,49835.00269499996
+Will Two People Exchanging Saliva win Best Live Action Short,0.44,4.83,0.0,-1.0,370745.658385
+Will The Singers win Best Live Action Short Film at the 98th,0.3134,4.83,1.0,2.190790103445415,129264.18456200002
+Will A Friend of Dorothy win Best Live Action Short Film at ,0.2,4.84,0.0,-1.0,40732.753993
+Will Retirement Plan win Best Animated Short Film at the 98t,0.16,68.39,0.0,-1.0,30799.026330999983
+Will The Girl Who Cried Pearls win Best Animated Short Film ,0.27,25.41,1.0,2.7037037037037033,91667.77955399996
+Will The Ugly Stepsister win Best Makeup and Hairstyling at ,0.02,6.23,0.0,-1.0,30970.03187200001
+Will Sinners win Best Costume Design at the 98th Academy Awa,0.02,1.84,0.0,-1.0,30873.063784000013
+Will Train Dreams win Best Cinematography at the 98th Academ,0.128,0.36,0.0,-1.0,259447.17844399958
+Will Ryan Coogler win Best Director at the 98th Academy Awar,0.068,0.27,0.0,-1.0,664322.7982340006
+Will EC Bahia win on 2026-03-11?,0.56,131.55,0.0,-1.0,82302.48548100083
+Will Chris Gober be the Republican Nominee for TX-10?,0.87,0.7,1.0,0.14942528735632177,30377.70305500001
+Will Jessica Steinmann be the Republican Nominee for TX-08?,0.73,14.04,1.0,0.36986301369863006,25416.888396
+Will Steve Toth be the Republican Nominee for TX-02?,0.2,1.35,1.0,4.0,57444.460438
+Will Nicholas Plumb be the Republican Nominee for TX-02?,0.093,17.8,0.0,-1.0,13671.821878
+Will Daniel Crenshaw be the Republican Nominee for TX-02?,0.71,2.18,0.0,-1.0,50694.840089
+Will Jasmine Crockett receive the most votes in the first ro,0.51,23.73,0.0,-1.0,24946.150337
+Will James Talarico receive the most votes in the first roun,0.28,1.18,1.0,2.571428571428571,33378.425114
+Will Japan’s January 2026 unemployment rate be 2.4%?,0.041,31.21,0.0,-1.0,326371.982982
+Will Japan’s January 2026 unemployment rate be ≤2.1%?,0.057,3.05,0.0,-1.0,101244.670667
+Will Gina Hinojosa win the 2026 Texas Governor Democratic pr,0.919,5.85,1.0,0.08814017625798587,10254.361339
+Will Greg Abbott win the 2026 Texas Governor Republican prim,0.954,4.95,1.0,0.04821804824879505,11841.227696
+Will Supha Xayprasith-Mays win the 2026 Arkansas Governor De,0.087,28.42,0.0,-1.0,58163.187132
+Will Fredrick Love win the 2026 Arkansas Governor Democratic,0.94,5.74,1.0,0.06382982978723573,38687.110636
+Will Michael Whatley be the Republican nominee for Senate in,0.969,4.94,1.0,0.03199176781570312,11745.214953
+Will Valentina Gomez be the Republican nominee for TX-31?,0.1395,40.59,0.0,-1.0,5428.013548
+Will John Carter be the Republican nominee for TX-31?,0.83,3.04,1.0,0.20481927710843384,9824.614639
+Will Mark Teixeira be the Republican nominee for TX-21?,0.91,0.1,1.0,0.09890109890109877,22836.213496
+Will Trey Trainor be the Republican nominee for TX-21?,0.04,28.41,0.0,-1.0,9342.652785
+Will Henry Cuellar be the Democratic nominee for TX-28?,0.94,5.79,1.0,0.06382982978723573,7656.046738
+Will Wesley Hunt come in 3rd in the 2026 Texas Republican Pr,0.89,1.75,1.0,0.12359550561797761,145735.335256
+Will John Cornyn come in 3rd in the 2026 Texas Republican Pr,0.1,1.76,0.0,-1.0,68484.844519
+Will Sport Lisboa e Benfica win on 2026-03-02?,0.83,13.95,1.0,0.20481940963856893,1441803.730542
+"Will there be at least 1,150 measles cases in the U.S. by Fe",0.48,5.45,0.0,-1.0,189370.379885
+Will Bill or Hillary publicly testify before congress by Feb,0.1169,3.86,0.0,-1.0,11742.298097
+North Korea missile launch by February 28?,0.3,0.28,0.0,-1.0,41031.137318
+Will Russia capture Pokrovka by February 28?,0.1067,4.19,0.0,-1.0,37207.201644
+Nancy Guthrie kidnapper arrested by February 28?,0.5399,0.61,0.0,-1.0,236188.11662
+Will Trump talk to Mark Carney in February?,0.65,0.47,0.0,-1.0,35136.982872
+"Will there be at least 1,050 measles cases in the U.S. by Fe",0.93,0.36,1.0,0.07526883870967782,122936.754236
+"GPT-5.3 released by February 28, 2026?",0.4328,2.28,0.0,-1.0,386186.71558
+Will there be at least 2 NYT banner headlines by February 28,0.06,30.8,0.0,-1.0,9848.940373
+Will there be 1 NYT banner headline by February 28?,0.5,27.63,1.0,1.0,9923.020909
+Will there be no NYT banner headlines by February 28?,0.3103,0.75,0.0,-1.0,5780.518856
+Will Apple announce the iPhone 17e by February 28?,0.7353,0.14,0.0,-1.0,166931.442308
+"Will Russia enter Verkhnia Tersa by February 28, 2026?",0.06,1.89,0.0,-1.0,60303.164046
+"Will there be at least 1,100 measles cases in the U.S. by Fe",0.75,0.35,1.0,0.33333333333333326,183941.438527
+"UK Cabinet Minister resigns by February 28, 2026?",0.09,0.87,0.0,-1.0,106746.77959
+Will Russia capture all of Huliaipole by February 28?,0.31,0.22,0.0,-1.0,414628.167892
+"Will Claude 5 not be released by February 28, 2026?",0.91,3.33,1.0,0.09890108018355304,115017.45996
+Will Silver (SI) settle over $40 on the final trading day of,0.91,99.79,1.0,0.09890109986716578,6404.769068
+Will Silver (SI) settle over $65 on the final trading day of,0.83,4.07,1.0,0.20481931847873547,6794.893248
+Will Silver (SI) settle over $90 on the final trading day of,0.35,28.69,1.0,1.8571431714286057,6262.832726
+Will Silver (SI) settle over $100 on the final trading day o,0.4,44.85,0.0,-1.0,13805.825346
+"Will Gold (GC) settle over $5,000 on the final trading day o",0.59,6.21,1.0,0.6949152542372883,16725.318592
+"Will Gold (GC) settle over $5,500 on the final trading day o",0.3615,0.15,0.0,-1.0,25107.919259
+"Will Gold (GC) settle over $6,000 on the final trading day o",0.045,6.5,0.0,-1.0,13002.82547
+"Will Gold (GC) settle at <$4,475 in February?",0.07,10.3,0.0,-1.0,18378.237432
+Will Bad Bunny have the greatest number of monthly Spotify l,0.3,0.01,0.0,-1.0,233303.291309
+Will Bruno Mars have the greatest number of monthly Spotify ,0.69,0.39,1.0,0.4492753623188408,355759.365415
+Martin Nowak out as Harvard professor by February 28?,0.09,0.95,0.0,-1.0,9401.156529
+US downs another Iranian drone by February 28?,0.15,0.95,1.0,5.6666628888910315,151889.974418
+ICE forced to unmask by February 28?,0.056,1.72,0.0,-1.0,80793.689488
+Will Russia enter Kindrashivka by February 28?,0.18,24.3,0.0,-1.0,17228.925015
+Will Trump talk to Emmanuel Macron in February?,0.34,17.09,0.0,-1.0,11834.029327
+Will the Department of Homeland Security receive full-year f,0.16,0.92,0.0,-1.0,187426.821041
+Will Crude Oil (CL) hit (LOW) $50 by end of February?,0.04,57.96,0.0,-1.0,15610.487056
+Will Crude Oil (CL) hit (LOW) $60 by end of February?,0.25,29.64,0.0,-1.0,5493.588752
+Will Crude Oil (CL) hit (HIGH) $72 by end of February?,0.05,12.18,0.0,-1.0,7791.121377
+Will Crude Oil (CL) hit (HIGH) $75 by end of February?,0.09,1.08,0.0,-1.0,26671.088991
+Will Crude Oil (CL) hit (HIGH) $80 by end of February?,0.12,11.51,0.0,-1.0,13067.339347
+Will the Silicon Data H100 Index (SDH100RT) hit $2.10 (LOW) ,0.03,1.42,0.0,-1.0,16985.83316
+Will the Silicon Data H100 Index (SDH100RT) hit $2.20 (LOW) ,0.09,1.42,0.0,-1.0,32255.741994
+Will the Silicon Data H100 Index (SDH100RT) hit $2.25 (LOW) ,0.39,0.22,0.0,-1.0,46705.487235
+Will the Silicon Data H100 Index (SDH100RT) hit $2.45 (HIGH),0.53,2.9,0.0,-1.0,53556.56757
+Will the Silicon Data H100 Index (SDH100RT) hit $2.50 (HIGH),0.16,0.32,0.0,-1.0,34503.834595
+Will the Silicon Data H100 Index (SDH100RT) hit $2.60 (HIGH),0.18,0.32,0.0,-1.0,5618.515312
+Will the Silicon Data H100 Index (SDH100RT) hit $3.00 (HIGH),0.049,2.99,0.0,-1.0,15603.450463
+"Will S&P 500 (SPX) hit $6,500 (LOW) in February 2026?",0.28,3.5,0.0,-1.0,19906.36094
+"Will S&P 500 (SPX) hit $6,600 (LOW) in February 2026?",0.38,9.36,0.0,-1.0,16715.281071
+"Will S&P 500 (SPX) hit $6,700 (LOW) in February 2026?",0.55,8.45,0.0,-1.0,40485.051727
+"Will S&P 500 (SPX) hit $6,750 (LOW) in February 2026?",0.52,6.05,0.0,-1.0,52569.241701
+"Will S&P 500 (SPX) hit $7,000 (HIGH) in February 2026?",0.35,1.33,0.0,-1.0,75760.089622
+"Will S&P 500 (SPX) hit $7,040 (HIGH) in February 2026?",0.31,6.75,0.0,-1.0,40589.618219
+"Will S&P 500 (SPX) hit $7,100 (HIGH) in February 2026?",0.14,3.54,0.0,-1.0,18989.807425
+"Will S&P 500 (SPX) hit $7,200 (HIGH) in February 2026?",0.05,5.12,0.0,-1.0,13701.187951
+"Will S&P 500 (SPX) hit $7,350 (HIGH) in February 2026?",0.03,33.32,0.0,-1.0,16849.02586
+"Will S&P 500 (SPX) close over $6,700 on the final trading da",0.74,4.49,1.0,0.3513513195763338,23607.271133
+"Will S&P 500 (SPX) close over $6,860 on the final trading da",0.54,0.68,1.0,0.8518518518518516,41903.841055
+"Will S&P 500 (SPX) close over $6,940 on the final trading da",0.39,1.49,0.0,-1.0,54978.662135
+"Will S&P 500 (SPX) close over $7,000 on the final trading da",0.16,3.13,0.0,-1.0,15585.670451
+"Will S&P 500 (SPX) close over $7,060 on the final trading da",0.12,7.22,0.0,-1.0,49586.808087
+"Will S&P 500 (SPX) close over $7,140 on the final trading da",0.05,9.22,0.0,-1.0,7179.697596
+Will Antti Paalanen win UMK 2026?,0.13,1.93,0.0,-1.0,19893.412248
+Will Linda Lampenius & Pete Parkkonen win UMK 2026?,0.82,9.98,1.0,0.2195121951219512,49787.368403
+Will Trump say “Low Energy” by February 28?,0.47,8.5,0.0,-1.0,12718.030851
+Will Trump say “Crazy Bernie” by February 28?,0.32,16.29,0.0,-1.0,11049.999277
+Will Trump say “Pocahontas” by February 28?,0.2418,15.89,0.0,-1.0,12195.139295
+Will Overtime with Bill Maher win Best Short-Form Program at,0.49,4.92,0.0,-1.0,14539.598188
+Will Adolescence: The Making of Adolescence win Best Short-F,0.09,9.73,1.0,10.111111111111114,7723.172964
+Will Sesame Street win Best Children's Program at the 37th P,0.26,183.12,1.0,2.846153846153846,7439.451531
+Will Formula 1: Drive to Survive win Best Sports Program at ,0.06,220.15,1.0,15.666666666666654,7137.280605
+Will The Traitors win Best Producer of Game & Competition TV,0.6328,17.16,1.0,0.5802781289506953,6596.091279
+Evidence Epstein blackmailed politicians released by Feb 28?,0.023,0.51,0.0,-1.0,137254.918378
+Will Epstein Data Set 13 be released by February 28?,0.2332,1.64,0.0,-1.0,138438.180814
+Moltbook shutdown by Feb 28?,0.0388,0.15,0.0,-1.0,286592.391667
+"Will Russia enter Rizdvianka by February 28, 2026?",0.05,1.06,0.0,-1.0,126828.487969
+Will Elon Musk’s net worth be at least $700b on February 28?,0.37,0.01,0.0,-1.0,68620.075942
+Will Elon Musk’s net worth be between $690b and $700b on Feb,0.147,4.96,0.0,-1.0,9757.5127
+Will Elon Musk’s net worth be between $680b and $690b on Feb,0.1202,4.95,0.0,-1.0,20215.068329
+Will Elon Musk’s net worth be between $670b and $680b on Feb,0.17,4.39,0.0,-1.0,37000.634469
+Will Elon Musk’s net worth be between $660b and $670b on Feb,0.04,37.59,1.0,23.99999999999998,27076.444546
+Will Elon Musk’s net worth be between $650b and $660b on Feb,0.05,10.2,0.0,-1.0,9795.735533
+Will Elon Musk’s net worth be between $640b and $650b on Feb,0.043,18.47,0.0,-1.0,6661.824611
+Will Elon Musk’s net worth be between $630b and $640b on Feb,0.023,32.17,0.0,-1.0,5603.502758
+Will Elon Musk’s net worth be less than $630b on February 28,0.0775,10.2,0.0,-1.0,10697.227205
+Houthi strike on Israel by February 28?,0.05,6.91,0.0,-1.0,159041.023047
+Will the US strike 2 countries in February 2026?,0.6015,4.23,0.0,-1.0,36196.216992
+Will Israel strike Iraq by February 28?,0.02,14.0,0.0,-1.0,95588.664558
+Will Kevin Warsh be formally nominated to be Chair of the Fe,0.65,0.68,0.0,-1.0,391447.371759
+Will NYC have more than 6 inches of precipitation in Februar,0.029,3.36,0.0,-1.0,5613.537405
+Will NYC have between 4 and 5 inches of precipitation in Feb,0.022,3.36,0.0,-1.0,14024.236783
+Will NYC have between 3 and 4 inches of precipitation in Feb,0.12,3.0,0.0,-1.0,59494.652171
+Will NYC have between 2 and 3 inches of precipitation in Feb,0.25,3.36,1.0,3.0,71393.060845
+Will NYC have less than 2 inches of precipitation in Februar,0.62,0.44,0.0,-1.0,73395.581104
+Will Bridget Jones: Mad About the Boy win Best Producer of a,0.59,2.58,0.0,-1.0,5551.576548
+Will Dying for Sex win Best Producer of a TV Limited or Anth,0.021,0.49,0.0,-1.0,5747.741387
+Will Black Mirror win Best Producer of a TV Limited or Antho,0.0218,0.54,0.0,-1.0,13025.759153
+Will Adolescence win Best Producer of a TV Limited or Anthol,0.96,2.45,1.0,0.04166666666666674,45683.487481
+Will The Studio win Best Producer of a TV Comedy Series at t,0.78,8.55,1.0,0.28205128205128194,10753.411851
+Will The Pitt win Best Producer of a TV Drama Series at the ,0.6,0.4,1.0,0.6666666666666667,16423.133828
+Will Israel or the US target Tehran?,0.07,3.96,1.0,13.285714285714285,242652.253782
+Will Israel or the US target an Iranian oil or gas facility?,0.031,16.82,0.0,-1.0,111321.874571
+"Will Russia enter Rai-Oleksandrivka by February 28, 2026?",0.03,12.97,0.0,-1.0,37618.784665
+Will Russia enter Bilytske by February 28?,0.24,0.96,1.0,3.1666650833339354,298252.734334
+"Will Trump say ""Bitcoin"" in February?",0.3846,9.2,0.0,-1.0,19139.91901
+"Will Trump say ""Migrant Crime"" in February?",0.23,0.13,0.0,-1.0,31659.845543
+"Will Trump say ""Antifa"" in February?",0.31,16.52,0.0,-1.0,7867.775086
+"Will Trump say ""Daddy"" in February?",0.36,1.68,0.0,-1.0,15740.846006
+"Will Trump say ""Gulf of America"" in February?",0.77,2.25,1.0,0.2987015194805571,48291.338693
+"Will Trump say ""Penguin"" in February?",0.25,0.95,0.0,-1.0,8986.280402
+"Will Trump say ""Kamikaze"" in February?",0.31,7.08,0.0,-1.0,8994.060952
+"Will Trump say ""Tariff King"" in February?",0.3252,61.25,0.0,-1.0,5162.110695
+"Will Trump say ""Knucklehead"" or ""Numskull"" or ""Numbskull"" in",0.3786,16.8,0.0,-1.0,7979.804751
+"Will Trump say ""Atomic Energy Commission"" in February?",0.37,2.55,0.0,-1.0,12355.476072
+"Will Trump say ""Oblivion"" in February?",0.58,5.2,0.0,-1.0,13395.868142
+"Will Trump say ""Microcosm"" in February?",0.2299,5.17,0.0,-1.0,15276.746546
+"Will Trump say ""Major Non-NATO Ally"" in February?",0.22,19.46,0.0,-1.0,12516.486338
+"Will Trump say ""N-Word"" in February?",0.08,0.8,0.0,-1.0,45222.516942
+Will BULLY debut No.1 on Billboard 200?,0.0536,2.84,0.0,-1.0,12488.280416
+Hezbollah strike on Israel by February 28?,0.05,6.98,0.0,-1.0,62292.736586
+Will Copper (HG) hit (HIGH) $7.00 by end of February?,0.035,3.38,0.0,-1.0,11676.634065
+"Will Gold (GC) hit (HIGH) $5,800 by end of February?",0.038,0.72,0.0,-1.0,662174.758528
+"Will Israel strike Gaza on February 23, 2026?",0.04,3.25,0.0,-1.0,46645.2869
+"Will Israel strike Gaza on February 22, 2026?",0.04,3.28,0.0,-1.0,82725.810017
+"Will Israel strike Lebanon on February 23, 2026?",0.24,0.26,0.0,-1.0,72335.172673
+"Will there be at least 1,200 measles cases in the U.S. by Fe",0.35,0.49,0.0,-1.0,241057.53741
+"Will there be at least 1,000 measles cases in the U.S. by Fe",0.978,0.34,1.0,0.02249488752556239,254950.56335
+Will DeepSeek have the #3 AI model at the end of February 20,0.0364,24.92,0.0,-1.0,11404.675483
+Will Anthropic have the #3 AI model at the end of February 2,0.29,6.26,0.0,-1.0,32726.418021
+Will OpenAI have the #3 AI model at the end of February 2026,0.0354,12.38,0.0,-1.0,20398.372293
+Will xAI have the #3 AI model at the end of February 2026?,0.02,0.95,0.0,-1.0,38167.209969
+Will Google have the #3 AI model at the end of February 2026,0.56,1.61,1.0,0.7857142857142856,45015.249819
+Will DeepSeek have the #2 AI model at the end of February 20,0.02,3.26,0.0,-1.0,17370.699396
+Will Anthropic have the #2 AI model at the end of February 2,0.8,4.81,1.0,0.25,36960.843037
+Will OpenAI have the #2 AI model at the end of February 2026,0.057,12.02,0.0,-1.0,14130.096381
+Will xAI have the #2 AI model at the end of February 2026?,0.034,11.02,0.0,-1.0,21718.16626
+Will Google have the #2 AI model at the end of February 2026,0.12,3.18,0.0,-1.0,38755.976062

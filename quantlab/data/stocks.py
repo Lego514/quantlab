@@ -21,6 +21,7 @@ def fetch_stock(symbol: str, period: str = "5y", interval: str = "1d") -> pd.Dat
     key = f"stock_{symbol}_{period}_{interval}"
     cached = cache.load(key)
     if cached is not None:
+        cached.attrs["source"] = "yahoo"
         return cached
 
     import yfinance as yf
@@ -31,4 +32,5 @@ def fetch_stock(symbol: str, period: str = "5y", interval: str = "1d") -> pd.Dat
         raise RuntimeError(f"no data returned for stock symbol {symbol!r}")
     df = _normalize(df)
     cache.save(key, df)
+    df.attrs["source"] = "yahoo"
     return df

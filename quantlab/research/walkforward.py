@@ -13,13 +13,15 @@ from .optimizer import grid_search
 
 def walk_forward(prices: pd.DataFrame, strategy_cls, backtester: Backtester,
                  n_splits: int = 4, train_ratio: float = 0.7,
-                 objective: str = "sharpe") -> dict:
+                 objective: str = "sharpe", funding: pd.Series | None = None) -> dict:
     """Anchored walk-forward.
 
     Splits data into n_splits folds; for each fold, trains on everything
     before it and tests on the fold itself.
 
-    Returns {"oos_equity", "oos_metrics", "folds": [per-fold info]}.
+    Returns {"oos_equity", "oos_metrics", "oos_trade_returns",
+    "oos_trade_entries", "fill", "data_source", "folds": [per-fold info]}.
+    The trade lists hold only trades that opened inside a test window.
     """
     n = len(prices)
     min_train = int(n / (n_splits + 1) * train_ratio) + 1
@@ -28,14 +30,17 @@ def walk_forward(prices: pd.DataFrame, strategy_cls, backtester: Backtester,
         raise ValueError("not enough data for that many walk-forward splits")
 
     oos_returns = []
+    oos_trades = []
     folds = []
+    result = None
     for i in range(n_splits):
         train_end = min_train + i * fold_size
         test_end = train_end + fold_size if i < n_splits - 1 else n
         train = prices.iloc[:train_end]
         test = prices.iloc[train_end:test_end]
 
-        ranked = grid_search(train, strategy_cls, backtester, objective=objective)
+        ranked = grid_search(train, strategy_cls, backtester, objective=objective,
+                             funding=funding)
         best = ranked.iloc[0]
         param_names = [c for c in ranked.columns
                        if c not in ("sharpe", "cagr", "max_drawdown", "calmar", "trades")]
@@ -52,10 +57,12 @@ def walk_forward(prices: pd.DataFrame, strategy_cls, backtester: Backtester,
         # keep returns from the test window
         warmup = min(250, train_end)
         ctx = prices.iloc[train_end - warmup:test_end]
-        result = backtester.run(ctx, strategy_cls(**params))
+        result = backtester.run(ctx, strategy_cls(**params), funding=funding)
         oos_equity_fold = result.equity.loc[test.index[0]:]
         fold_returns = oos_equity_fold.pct_change().dropna()
         oos_returns.append(fold_returns)
+        oos_trades.extend((t, r) for t, r in zip(result.trade_entries, result.trade_returns)
+                          if t >= test.index[0])
 
         folds.append({
             "fold": i + 1,
@@ -71,5 +78,9 @@ def walk_forward(prices: pd.DataFrame, strategy_cls, backtester: Backtester,
     return {
         "oos_equity": oos_equity,
         "oos_metrics": compute_metrics(oos_equity),
+        "oos_trade_returns": [r for _, r in oos_trades],
+        "oos_trade_entries": [t for t, _ in oos_trades],
+        "fill": result.fill,
+        "data_source": result.data_source,
         "folds": folds,
     }

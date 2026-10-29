@@ -54,8 +54,16 @@ def compute_metrics(equity: pd.Series, trades: int = 0,
     vol = returns.std() * np.sqrt(ppy)
     sharpe = (returns.mean() / returns.std() * np.sqrt(ppy)) if returns.std() > 0 else 0.0
 
-    downside = returns[returns < 0]
-    sortino = (returns.mean() / downside.std() * np.sqrt(ppy)) if len(downside) > 1 and downside.std() > 0 else float("inf") if returns.mean() > 0 else 0.0
+    # Downside deviation is the root mean square of the shortfall below zero,
+    # taken over EVERY period (gains and flat days count as zero shortfall).
+    # Before 2026-10 this used the standard deviation of the losing periods
+    # alone, which measures spread around the average loss instead. Its error
+    # has no fixed sign: on normal returns it runs ~14% small (Sortino too
+    # high), but a strategy that sits flat much of the time never puts those
+    # zero days in it, so it runs large (Sortino too low; the 2026 case
+    # study's portfolio went from 1.30 to 1.55).
+    downside_dev = float(np.sqrt(np.mean(np.minimum(returns, 0.0) ** 2)))
+    sortino = (returns.mean() / downside_dev * np.sqrt(ppy)) if downside_dev > 0 else float("inf") if returns.mean() > 0 else 0.0
 
     running_max = equity.cummax()
     drawdown = equity / running_max - 1

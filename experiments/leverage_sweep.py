@@ -6,8 +6,9 @@ realistic financing on the borrowed portion (margin rate / perp funding).
 
 This answers: "what CAGR is reachable, and what drawdown does it cost?"
 
-Run:  venv\\Scripts\\python.exe experiments\\leverage_sweep.py
+Run:  venv\\Scripts\\python.exe experiments\\leverage_sweep.py [--end 2026-09-30] [--fill close]
 """
+import argparse
 import sys
 from pathlib import Path
 
@@ -15,6 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from quantlab.data import fetch
 from quantlab.engine import Backtester, compute_metrics
+from quantlab.engine.backtester import FILLS
 from quantlab.research import leg_returns, walk_forward
 from quantlab.strategies import VolMomentum
 
@@ -23,11 +25,18 @@ LEVERS = [1.0, 1.5, 2.0, 3.0, 4.0]
 
 
 def main():
-    bt = Backtester(fee=0.001, slippage=0.0005)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--end", help="last date of data to use, e.g. 2026-09-30")
+    ap.add_argument("--fill", choices=FILLS, default="next_open")
+    args = ap.parse_args()
+
+    bt = Backtester(fee=0.001, slippage=0.0005, fill=args.fill)
     leg_equity = {}
     for symbol, kind, kwargs in [("QQQ", "stock", {"period": "10y"}),
                                  ("BTC-USD", "crypto", {"days": 2000})]:
         prices = fetch(kind, symbol, **kwargs)
+        if args.end:
+            prices = prices.loc[:args.end]
         leg_equity[symbol] = walk_forward(prices, VolMomentum, bt)["oos_equity"]
 
     rets = leg_returns(leg_equity)
