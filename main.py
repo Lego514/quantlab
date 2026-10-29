@@ -198,24 +198,46 @@ def cmd_scan(args):
 
 
 def cmd_forward(args):
+    """Without --spec, every spec in forward/specs. One ledger failing does
+    not stop the others; the exit code is 1 if any failed."""
+    from pathlib import Path
     from quantlab import forward
+    specs = [Path(args.spec)] if args.spec else forward.spec_paths()
+    failed = False
     if args.action == "run":
-        appended = forward.run(args.spec)
-        for symbol, n in appended.items():
-            print(f"  {symbol}: {n} new row(s)")
-        print()
-        print(forward.summary_text(forward.load_spec(args.spec)))
+        results = {p.stem: _attempt(forward.run, p) for p in specs} if args.spec \
+            else forward.run_all()
+        if args.spec:
+            forward.write_index()
+        for name, res in results.items():
+            if isinstance(res, Exception):
+                failed = True
+                print(f"  x {name}: {res}")
+            else:
+                print(f"  {name}: " + ", ".join(f"{s} +{n}" for s, n in res.items()))
     elif args.action == "reconcile":
-        problems = forward.reconcile(args.spec)
-        if problems:
-            print("reconcile FAILED:")
-            for p in problems:
-                print(f"  x {p}")
-            sys.exit(1)
-        print("reconcile OK: the ledger follows from its own prices, and the backtester "
-              "agrees with it on fresh data")
+        results = {p.stem: forward.reconcile(p) for p in specs} if args.spec \
+            else forward.reconcile_all()
+        for name, problems in results.items():
+            if problems:
+                failed = True
+                print(f"  x {name}: reconcile FAILED")
+                for p in problems:
+                    print(f"      {p}")
+            else:
+                print(f"  {name}: reconcile OK (own arithmetic exact; backtester agrees)")
     else:
-        print(forward.summary_text(forward.load_spec(args.spec)))
+        for p in specs:
+            print(forward.summary_text(forward.load_spec(p)))
+    if failed:
+        sys.exit(1)
+
+
+def _attempt(fn, *args):
+    try:
+        return fn(*args)
+    except Exception as e:
+        return e
 
 
 def cmd_pm_search(args):
@@ -282,7 +304,7 @@ def build_parser():
 
     sp = sub.add_parser("forward", help="frozen-rule forward ledger (see forward/)")
     sp.add_argument("action", choices=["run", "reconcile", "status"])
-    sp.add_argument("--spec", default="forward/specs/portfolio_2026.json")
+    sp.add_argument("--spec", help="one spec file; default: every spec in forward/specs")
     sp.set_defaults(func=cmd_forward)
 
     sp = sub.add_parser("pm-search", help="search Polymarket markets")

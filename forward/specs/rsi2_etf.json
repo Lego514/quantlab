@@ -1,0 +1,29 @@
+{
+  "name": "rsi2_etf",
+  "description": "Connors-style RSI(2) mean reversion on SPY and QQQ, moved here from a sibling project's ledger (deployed settings: threshold 10 with the 200-day filter, exit above the prior 5-day average). Half in each. The original used unadjusted closes and filled at the signal close; this ledger uses dividend-adjusted prices and fills at the next open, so signals near ex-dividend dates can differ slightly and it starts fresh.",
+  "fee": 0.0005,
+  "slippage": 0.0,
+  "fill": "next_open",
+  "legs": [
+    {
+      "symbol": "SPY",
+      "market": "stock",
+      "weight": 0.5,
+      "strategy": "rsi2",
+      "params": {"threshold": 10, "ma_filter": 200, "ma_exit": 5},
+      "history": {"period": "2y"}
+    },
+    {
+      "symbol": "QQQ",
+      "market": "stock",
+      "weight": 0.5,
+      "strategy": "rsi2",
+      "params": {"threshold": 10, "ma_filter": 200, "ma_exit": 5},
+      "history": {"period": "2y"}
+    }
+  ],
+  "expected": {
+    "source": "the sibling project's backtest, calibrated on the last ten years",
+    "note": "about +0.4% a trade with a 79% win rate; in the market only a few days at a time"
+  }
+}

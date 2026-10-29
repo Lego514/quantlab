@@ -1,0 +1,40 @@
+{
+  "name": "trend_crypto",
+  "description": "Crypto trend following, moved here from a sibling project's ledger (rules frozen 2026-07-03, recorded there from 2026-07-03 to 2026-10-28 with fills at the signal close). Equal thirds of BTC, ETH and SOL; each is held while its close is above the 200-day average, sized to a 20% volatility target. This ledger fills at the next open like every other quantlab result, so it starts fresh rather than continuing the old record.",
+  "fee": 0.0015,
+  "slippage": 0.0,
+  "fill": "next_open",
+  "legs": [
+    {
+      "symbol": "BTC-USD",
+      "market": "crypto",
+      "weight": 0.3333333333333333,
+      "strategy": "trend_vol",
+      "params": {"ma": 200, "target_vol": 0.2, "vol_window": 30},
+      "history": {"days": 730},
+      "source": "yahoo"
+    },
+    {
+      "symbol": "ETH-USD",
+      "market": "crypto",
+      "weight": 0.3333333333333333,
+      "strategy": "trend_vol",
+      "params": {"ma": 200, "target_vol": 0.2, "vol_window": 30},
+      "history": {"days": 730},
+      "source": "yahoo"
+    },
+    {
+      "symbol": "SOL-USD",
+      "market": "crypto",
+      "weight": 0.3333333333333334,
+      "strategy": "trend_vol",
+      "params": {"ma": 200, "target_vol": 0.2, "vol_window": 30},
+      "history": {"days": 730},
+      "source": "yahoo"
+    }
+  ],
+  "expected": {
+    "source": "the sibling project's 10-year backtest, fills at the signal close",
+    "note": "about 17% a year, Sharpe 1.23, max drawdown -14%; flat most of the time (164 entries and exits across the three assets in ten years)"
+  }
+}

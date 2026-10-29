@@ -29,7 +29,8 @@ quantlab/
 ├── engine/        vectorized backtester, metrics, venue cost presets
 ├── research/      grid search, anchored walk-forward, bootstrap error bars,
 │                  random-timing control, signal-quality gate
-├── strategies/    7 strategies behind one Strategy interface + registry
+├── forward/       frozen-rule forward ledgers (see "Forward record")
+├── strategies/    9 strategies behind one Strategy interface + registry
 └── report.py      matplotlib equity/drawdown/position charts
 main.py            CLI: backtest · scan · optimize · walkforward · pm-search
 experiments/       standalone research studies (see below)
@@ -79,6 +80,8 @@ The gate's thresholds are fixed before any result is seen. It was written for ar
 | `bollinger` | Mean reversion | Buy below the lower band, exit at the middle band |
 | `vol_momentum` | Momentum + risk control | Long on positive momentum, sized as target vol ÷ realized vol (higher volatility → smaller position) |
 | `donchian` | Breakout | Enter on an N-bar high, exit on an M-bar low (turtle-style) |
+| `trend_vol` | Trend + risk control | Long above the 200-day average, sized to a volatility target |
+| `rsi2` | Mean reversion | Connors RSI(2): buy a short-term dip in an uptrend, sell above the 5-day average |
 
 ## Research experiments (`experiments/`)
 
@@ -91,17 +94,25 @@ Standalone studies that use the engine rather than extend it:
 
 ## Forward record (`forward/`)
 
-A backtest can be fit to the past; a record kept after the rules were frozen cannot. The 2026 case study's portfolio now trades forward every day:
+A backtest can be fit to the past; a record kept after the rules were frozen cannot. Three rule sets trade forward every day ([summary](forward/README.md)):
 
-- **Frozen rules** in [`forward/specs/portfolio_2026.json`](forward/specs/portfolio_2026.json). Their hash is locked when the ledger starts, and the ledger refuses to run if the rules change; new rules get a new name and a new ledger.
-- **Daily, on GitHub Actions** ([`forward.yml`](.github/workflows/forward.yml), 00:30 UTC): run the tests, record each newly completed bar (fill at the open, mark at the close, with the backtester's own per-bar formula), reconcile, commit. The ledger lives in [`forward/ledgers/portfolio_2026/`](forward/ledgers/portfolio_2026/).
+| Ledger | Rules |
+|---|---|
+| `portfolio_2026` | The case study: 50/50 QQQ and BTC, volatility-targeted momentum |
+| `trend_crypto` | Thirds of BTC, ETH, SOL; held above the 200-day average, sized to a 20% vol target (`trend_vol`) |
+| `rsi2_etf` | Halves of SPY and QQQ; Connors RSI(2) below 10 above the 200-day average, out above the prior 5-day average (`rsi2`) |
+
+The last two moved here from a sibling project's ledgers; `tests/test_ported_strategies.py` checks them bar for bar against a transcription of the original code.
+
+- **Frozen rules** in [`forward/specs/`](forward/specs/). Their hash is locked when a ledger starts, and the ledger refuses to run if the rules change; new rules get a new name and a new ledger.
+- **Daily, on GitHub Actions** ([`forward.yml`](.github/workflows/forward.yml), 00:30 UTC): run the tests, record each newly completed bar (fill at the open, mark at the close, with the backtester's own per-bar formula), reconcile, commit. Ledgers live in [`forward/ledgers/`](forward/ledgers/). A ledger whose download fails writes nothing and catches up the next day; the others are still recorded.
 - **Append-only**, and the git history timestamps every row: `git log -p forward/ledgers` shows when each day was written. Days caught up after a missed run are marked `recorded_late`.
 - **Reconciled every run**: each row must follow exactly from the previous one and its recorded prices, and the backtester replaying the same bars on fresh data must agree with the ledger.
 
 ```bash
-python main.py forward run         # record new completed bars
-python main.py forward reconcile   # check the ledger against itself and the engine
-python main.py forward status      # summary
+python main.py forward run         # record new completed bars, every spec
+python main.py forward reconcile   # check each ledger against itself and the engine
+python main.py forward status      # summaries (--spec for one)
 ```
 
 ## Setup

@@ -34,6 +34,7 @@ from . import ledger
 from .spec import Spec, load_spec
 
 ROOT = Path(__file__).resolve().parents[2]
+SPECS = Path("forward") / "specs"
 STOCK_DATA_SETTLED = 17  # New York hour; the close is 16:00, give the data an hour
 
 EQUITY_TOL = 1e-12   # ledger arithmetic must match its own inputs exactly
@@ -169,7 +170,15 @@ def reconcile(spec_path, fetch=default_fetch, root: Path | None = None,
             problems.append(f"{leg.symbol}: no ledger yet")
             continue
         problems += _check_arithmetic(leg.symbol, rows, spec.cost_rate)
-        problems += _check_engine(leg, spec, rows, completed_bars(fetch(leg), leg.market, now))
+        try:
+            fresh = fetch(leg)
+        except Exception as e:
+            # The arithmetic check above needs no data; the engine check does.
+            # A download outage skips it with a warning rather than failing.
+            print(f"  ! {spec.name}/{leg.symbol}: engine check skipped, fetch failed "
+                  f"({str(e)[:80]})", file=sys.stderr)
+            continue
+        problems += _check_engine(leg, spec, rows, completed_bars(fresh, leg.market, now))
     return problems
 
 
@@ -263,11 +272,19 @@ def summary_text(spec: Spec, root: Path | None = None) -> str:
     if len(port):
         lines.append(f"| **Portfolio** | {port.index[0].date()} | {port.index[-1].date()} | "
                      f"{len(port) - 1} | **{port.iloc[-1] - 1:+.2%}** | | |")
+    if spec.description:
+        lines += ["", spec.description]
     exp = spec.expected
     if exp:
-        lines += ["", f"Backtest expectation ({exp.get('source', 'see STRATEGY_2026.md')}): "
-                  f"Sharpe {exp.get('sharpe')}, 95% interval "
-                  f"{exp.get('sharpe_ci', ['?', '?'])[0]}–{exp.get('sharpe_ci', ['?', '?'])[1]}."]
+        claim = []
+        if "sharpe" in exp:
+            claim.append(f"Sharpe {exp['sharpe']}")
+        if "sharpe_ci" in exp:
+            claim.append(f"95% interval {exp['sharpe_ci'][0]}–{exp['sharpe_ci'][1]}")
+        if "note" in exp:
+            claim.append(exp["note"])
+        lines += ["", f"Backtest expectation ({exp.get('source', 'n/a')}): "
+                  f"{', '.join(claim)}."]
         days = max(len(port) - 1, 0)
         if days < 120:
             lines.append(f"{days} portfolio days so far: far too few to compare a Sharpe "
@@ -277,6 +294,59 @@ def summary_text(spec: Spec, root: Path | None = None) -> str:
             sharpe = r.mean() / r.std() * (252 ** 0.5) if r.std() > 0 else 0.0
             lines.append(f"Sharpe over {days} portfolio days: {sharpe:.2f}.")
     return "\n".join(lines) + "\n"
+
+
+def spec_paths(root: Path | None = None) -> list[Path]:
+    return sorted(((root or ROOT) / SPECS).glob("*.json"))
+
+
+def run_all(now: datetime | None = None, fetch=default_fetch,
+            root: Path | None = None) -> dict:
+    """Run every spec. One ledger's failed download must not stop the others:
+    returns {name: rows appended per leg, or the error}."""
+    out = {}
+    for path in spec_paths(root):
+        try:
+            out[path.stem] = run(path, now=now, fetch=fetch, root=root)
+        except Exception as e:
+            out[path.stem] = e
+    write_index(root)
+    return out
+
+
+def reconcile_all(fetch=default_fetch, root: Path | None = None,
+                  now: datetime | None = None) -> dict:
+    """{name: problems} for every spec whose ledger has started."""
+    out = {}
+    for path in spec_paths(root):
+        if ledger.read_lock(ledger_dir(load_spec(path), root)) is None:
+            continue  # never recorded (its first run failed): nothing to check
+        out[path.stem] = reconcile(path, fetch=fetch, root=root, now=now)
+    return out
+
+
+def write_index(root: Path | None = None) -> None:
+    """forward/README.md: one line per ledger."""
+    base = root or ROOT
+    lines = ["# Forward records", "",
+             "Ledgers trading frozen rules, one completed bar at a time, recorded daily by "
+             "GitHub Actions (`.github/workflows/forward.yml`). Generated; do not edit.", "",
+             "| Ledger | Legs | Started | Last bar | Portfolio return |",
+             "|---|---|---|---|---|"]
+    for path in spec_paths(root):
+        spec = load_spec(path)
+        lock = ledger.read_lock(ledger_dir(spec, root))
+        legs = ", ".join(f"{l.symbol} {l.weight:.0%}" for l in spec.legs)
+        if lock is None:
+            lines.append(f"| {spec.name} | {legs} | not yet | | |")
+            continue
+        port = portfolio_equity(spec, root)
+        last = port.index[-1].date() if len(port) else ""
+        ret = f"{port.iloc[-1] - 1:+.2%}" if len(port) else ""
+        lines.append(f"| [{spec.name}](ledgers/{spec.name}/) | {legs} | "
+                     f"{lock['started_at'][:10]} | {last} | {ret} |")
+    (base / "forward").mkdir(parents=True, exist_ok=True)
+    (base / "forward" / "README.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def write_summary(spec: Spec, root: Path | None = None) -> None:
