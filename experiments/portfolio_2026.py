@@ -1,8 +1,13 @@
 """The "2026 portfolio": 50/50 QQQ + BTC vol-targeted momentum,
 built ONLY from walk-forward out-of-sample returns (no in-sample flattery).
 
-Run:  venv\\Scripts\\python.exe experiments\\portfolio_2026.py
+Run:  venv\\Scripts\\python.exe experiments\\portfolio_2026.py [--end 2026-09-30] [--fill close]
+
+--end cuts the data at a date, so a restatement can hold the window fixed
+while it changes the method. --fill close reproduces the engine's pre-2026-10
+fill (at the signal bar's own close) for comparison.
 """
+import argparse
 import sys
 from pathlib import Path
 
@@ -10,27 +15,37 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from quantlab.data import fetch
 from quantlab.engine import Backtester, compute_metrics
-from quantlab.research import leg_returns, walk_forward
+from quantlab.engine.backtester import FILLS
+from quantlab.research import block_bootstrap_sharpe, gate, leg_returns, walk_forward, years_needed
 from quantlab.strategies import VolMomentum
 
 WEIGHTS = {"QQQ": 0.5, "BTC-USD": 0.5}
 
 
 def main():
-    bt = Backtester(fee=0.001, slippage=0.0005)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--end", help="last date of data to use, e.g. 2026-09-30")
+    ap.add_argument("--fill", choices=FILLS, default="next_open")
+    args = ap.parse_args()
 
-    equity, closes = {}, {}
+    bt = Backtester(fee=0.001, slippage=0.0005, fill=args.fill)
+
+    equity, closes, trades = {}, {}, []
     for symbol in WEIGHTS:
         if symbol == "QQQ":
             prices = fetch("stock", symbol, period="10y", interval="1d")
         else:
             prices = fetch("crypto", symbol, days=2000)
+        if args.end:
+            prices = prices.loc[:args.end]
         closes[symbol] = prices["close"]
         wf = walk_forward(prices, VolMomentum, bt)
         equity[symbol] = wf["oos_equity"]
+        trades.extend(wf["oos_trade_returns"])
         m = wf["oos_metrics"]
         print(f"{symbol:8s} OOS: sharpe {m['sharpe']:.2f}  cagr {m['cagr']:.1%}  "
-              f"maxDD {m['max_drawdown']:.1%}")
+              f"maxDD {m['max_drawdown']:.1%}  ({len(wf['oos_trade_returns'])} trades, "
+              f"data {wf['data_source']}, fill {wf['fill']})")
 
     # Overlap period, on the days both legs trade; BTC's weekend moves land on
     # Monday instead of being dropped.
@@ -50,6 +65,15 @@ def main():
     print(f"  sortino        {m['sortino']:>10.2f}")
     print(f"  max_drawdown   {m['max_drawdown']:>10.2%}")
 
+    # The error bars a single Sharpe hides.
+    ci = block_bootstrap_sharpe(port_rets, periods_per_year=252)
+    print(f"  sharpe 95% CI  [{ci['ci_low']:.2f}, {ci['ci_high']:.2f}]"
+          f"  (block bootstrap, 20-day blocks)")
+    need = years_needed(m["sharpe"])
+    if need is not None:
+        print(f"  years before this sharpe is significant: {need:.1f} "
+              f"(have {m['years']:.1f})")
+
     # The bar the portfolio has to clear: simply holding each asset over the
     # same window.
     print(f"\n[buy & hold, same window]")
@@ -58,6 +82,9 @@ def main():
         b = compute_metrics(window / window.iloc[0])
         print(f"  {symbol:8s} sharpe {b['sharpe']:.2f}  cagr {b['cagr']:.1%}  "
               f"maxDD {b['max_drawdown']:.1%}")
+
+    print(f"\n[signal-quality gate, both legs' out-of-sample trades]")
+    print(gate(trades).report())
 
     import matplotlib
     matplotlib.use("Agg")

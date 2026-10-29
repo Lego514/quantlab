@@ -57,6 +57,22 @@ class TestComputeMetrics:
         overridden = compute_metrics(equity, periods_per_year=365)["years"]
         assert inferred != overridden
 
+    def test_sortino_uses_downside_deviation_over_every_period(self, stock_index):
+        rng = np.random.default_rng(1)
+        rets = pd.Series(rng.normal(0.0005, 0.01, len(stock_index) - 1))
+        # Half the days flat: a strategy out of the market. Flat days are zero
+        # shortfall and must still count in the denominator.
+        rets[::2] = 0.0
+        equity = pd.Series(np.r_[1.0, (1 + rets).cumprod()], index=stock_index)
+        r = equity.pct_change().dropna()
+        downside_dev = np.sqrt(np.mean(np.minimum(r, 0) ** 2))
+        expected = r.mean() / downside_dev * np.sqrt(252)
+        assert compute_metrics(equity)["sortino"] == pytest.approx(expected)
+        # The pre-2026-10 formula (std of the losing days alone) gives a
+        # different number here; this pins which one the engine reports.
+        old = r.mean() / r[r < 0].std() * np.sqrt(252)
+        assert abs(compute_metrics(equity)["sortino"] - old) > 0.05
+
     def test_years_matches_the_real_calendar_span(self, stock_index):
         # 1000 weekdays is about 3.97 calendar years; if n_years is computed on
         # 365 instead of 252 it comes out near 2.7 and CAGR inflates with it.

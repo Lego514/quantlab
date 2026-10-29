@@ -58,6 +58,7 @@ def fetch_polymarket(token_id: str, fidelity: int = 60, **_) -> pd.DataFrame:
     key = f"polymarket_{token_id}_{fidelity}"
     cached = cache.load(key)
     if cached is not None:
+        cached.attrs["source"] = "polymarket_clob"
         return cached
 
     resp = requests.get(CLOB_HISTORY_URL, params={
@@ -74,4 +75,5 @@ def fetch_polymarket(token_id: str, fidelity: int = 60, **_) -> pd.DataFrame:
     df.index = pd.to_datetime(df["t"], unit="s")
     df = df.rename(columns={"p": "close"})[["close"]].astype(float)
     cache.save(key, df)
+    df.attrs["source"] = "polymarket_clob"
     return df

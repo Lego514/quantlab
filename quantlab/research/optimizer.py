@@ -7,7 +7,8 @@ from ..engine import Backtester
 
 
 def grid_search(prices: pd.DataFrame, strategy_cls, backtester: Backtester,
-                param_grid: dict | None = None, objective: str = "sharpe") -> pd.DataFrame:
+                param_grid: dict | None = None, objective: str = "sharpe",
+                funding: pd.Series | None = None) -> pd.DataFrame:
     """Run a backtest for every parameter combination, ranked by `objective`.
 
     Returns a DataFrame with one row per combination, best first.
@@ -23,7 +24,7 @@ def grid_search(prices: pd.DataFrame, strategy_cls, backtester: Backtester,
     for combo in itertools.product(*(grid[k] for k in keys)):
         params = dict(zip(keys, combo))
         strategy = strategy_cls(**params)
-        result = backtester.run(prices, strategy)
+        result = backtester.run(prices, strategy, funding=funding)
         row = {**params,
                "sharpe": result.metrics.get("sharpe", 0),
                "cagr": result.metrics.get("cagr", 0),

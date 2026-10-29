@@ -3,6 +3,7 @@
 Primary source: Binance public klines API (no API key needed, fine-grained).
 Fallback: Yahoo Finance (e.g. BTC-USD) if Binance is unreachable/geo-blocked.
 """
+import sys
 import time
 
 import pandas as pd
@@ -70,17 +71,35 @@ def _fetch_yahoo(symbol: str, interval: str, limit_days: int) -> pd.DataFrame:
     return fetch_stock(symbol, period=period, interval=yahoo_interval)
 
 
+SOURCES = ("binance", "yahoo")
+
+
+def _cache_key(source: str, symbol: str, interval: str, days: int) -> str:
+    return f"crypto_{source}_{symbol}_{interval}_{days}"
+
+
 def fetch_crypto(symbol: str, interval: str = "1d", days: int = 1460) -> pd.DataFrame:
-    """Fetch crypto OHLCV. symbol like "BTC-USD", "ETHUSDT", "SOL/USDT"."""
+    """Fetch crypto OHLCV. symbol like "BTC-USD", "ETHUSDT", "SOL/USDT".
+
+    Binance answers HTTP 451 to US addresses, and the fallback to Yahoo used
+    to be silent: the 2026 case study's BTC history turned out to be Yahoo's
+    (it starts in 2014, three years before Binance existed). The source now
+    travels with the data in `df.attrs["source"]`, is part of the cache key,
+    and a fallback says why it happened.
+    """
     if interval not in _INTERVAL_MAP:
         raise ValueError(f"interval must be one of {list(_INTERVAL_MAP)}")
-    key = f"crypto_{symbol}_{interval}_{days}"
-    cached = cache.load(key)
-    if cached is not None:
-        return cached
+    for source in SOURCES:
+        cached = cache.load(_cache_key(source, symbol, interval, days))
+        if cached is not None:
+            cached.attrs["source"] = source
+            return cached
     try:
-        df = _fetch_binance(symbol, interval, days)
-    except Exception:
-        df = _fetch_yahoo(symbol, interval, days)
-    cache.save(key, df)
+        df, source = _fetch_binance(symbol, interval, days), "binance"
+    except Exception as e:
+        print(f"  ! binance unavailable for {symbol} ({str(e)[:80]}); "
+              f"falling back to yahoo", file=sys.stderr)
+        df, source = _fetch_yahoo(symbol, interval, days), "yahoo"
+    cache.save(_cache_key(source, symbol, interval, days), df)
+    df.attrs["source"] = source
     return df

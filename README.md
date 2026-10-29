@@ -2,19 +2,22 @@
 
 **A Python research engine for testing trading strategies across US equities, crypto, and Polymarket prediction markets — built around walk-forward out-of-sample validation, because the point is to *reject* overfit strategies, not to produce pretty in-sample equity curves.**
 
-Most backtesting toys will happily show you a 300% return that evaporates the moment you trade it. This one is designed to catch that: every result is charged realistic costs, every signal trades on the *next* bar, and the headline number is out-of-sample.
+Most backtesting toys will happily show you a 300% return that evaporates the moment you trade it. This one is designed to catch that: every result is charged realistic costs, every signal trades at the *next* bar's open, the headline number is out-of-sample, and it comes with error bars.
 
 ![Walk-forward out-of-sample equity](reports/wf_QQQ_vol_momentum.png)
 
 ## Why this project exists
 
-Backtests lie in three common ways. quantlab is built to close each hole:
+Backtests lie in a handful of common ways. quantlab is built to close each hole:
 
 | Failure mode | How the engine prevents it |
 |---|---|
-| **Look-ahead bias** — trading on a signal at the same bar it appears | Positions are `shift(1)`ed: a signal on bar *t* is filled on bar *t+1* |
-| **Ignoring frictions** — costless backtests that die on real fees | Fee (default 0.1%) and slippage (default 0.05%) charged on turnover, plus round-trip cost accounting per trade |
+| **Look-ahead bias** — trading on a signal at the same bar it appears | A signal computed at bar *t*'s close is traded at bar *t+1*'s **open**, so it never buys the price that produced it. An overnight gap after the signal belongs to the position held before it. (`--fill close` reproduces the older fill at the signal bar's close, for comparison) |
+| **Ignoring frictions** — costless backtests that die on real fees | Fee and slippage charged on turnover, with named venue presets (`--venue coinbase_advanced` costs 0.60% a fill, `okx_perp` 0.05%). Optional perpetual funding (`--perp`, OKX history) and short borrow (`--borrow-rate`) |
 | **Overfitting** — tuning parameters until the past looks great | Anchored walk-forward: parameters are optimized on a training window, then traded **unchanged** on data the optimizer never saw. Only the stitched out-of-sample equity counts |
+| **One number, no error bars** — a Sharpe from a few dozen trades | `walkforward` reports a block-bootstrap 95% interval for the Sharpe, the years of data it would take to be significant, and a **signal-quality gate** on the out-of-sample trades: trimmed mean, median, t-statistic, and how much of the P&L the best 5% of trades earned |
+| **Lucky picks** — ranking many configurations and believing the top one | `scan` is labelled in-sample, and `--control N` scores each strategy against N copies of itself with randomly shifted timing: same exposure and turnover, no timing. If the real one doesn't beat most of them, its signal selects nothing |
+| **Not knowing your data** — a silent fallback to another source | Every result names its data source. Binance blocks US addresses (HTTP 451) and the crypto loader used to fall back to Yahoo silently; it now says so, and caches by source |
 
 Every strategy is also scored against a **buy-and-hold benchmark** on the same asset. A strategy that can't beat holding the asset isn't a strategy.
 
@@ -22,9 +25,10 @@ Every strategy is also scored against a **buy-and-hold benchmark** on the same a
 
 ```
 quantlab/
-├── data/          yfinance (equities), crypto, Polymarket CLOB; on-disk caching
-├── engine/        vectorized backtester + metrics
-├── research/      grid-search optimizer, anchored walk-forward validation
+├── data/          yfinance (equities), crypto, Polymarket CLOB, OKX funding; on-disk caching
+├── engine/        vectorized backtester, metrics, venue cost presets
+├── research/      grid search, anchored walk-forward, bootstrap error bars,
+│                  random-timing control, signal-quality gate
 ├── strategies/    7 strategies behind one Strategy interface + registry
 └── report.py      matplotlib equity/drawdown/position charts
 main.py            CLI: backtest · scan · optimize · walkforward · pm-search
@@ -35,7 +39,7 @@ Strategies implement one method — `generate_positions(prices) -> Series` in `[
 
 ## Metrics reported
 
-Total return · CAGR · **Sharpe** · Sortino · **max drawdown** · Calmar · win rate · profit factor · trade count — for both the strategy and the buy-and-hold benchmark.
+Total return · CAGR · **Sharpe** · Sortino · **max drawdown** · Calmar · win rate · profit factor · trade count — for both the strategy and the buy-and-hold benchmark. Sortino divides by the downside deviation over *every* period, flat days included.
 
 ## The five commands
 
@@ -44,8 +48,10 @@ Total return · CAGR · **Sharpe** · Sortino · **max drawdown** · Calmar · w
 python main.py backtest --market crypto --symbol BTC-USD --strategy sma_cross
 python main.py backtest --market stock --symbol AAPL --strategy rsi_reversion --params window=14,lower=30
 
-# 2. Sweep many symbols x many strategies to find where signal might exist
-python main.py scan --market stock --symbols QQQ,SPY,NVDA,TSLA
+python main.py backtest --market crypto --symbol ETH-USD --strategy sma_cross --perp --venue okx_perp
+
+# 2. Sweep many symbols x many strategies to find where signal might exist (in-sample)
+python main.py scan --market stock --symbols QQQ,SPY,NVDA,TSLA --control 100
 
 # 3. Grid-search one strategy's parameters (in-sample)
 python main.py optimize --market crypto --symbol ETH-USD --strategy momentum
@@ -58,7 +64,9 @@ python main.py pm-search --query "fed"
 python main.py backtest --market polymarket --symbol <yes_token_id> --strategy momentum
 ```
 
-`walkforward` reports **in-sample vs out-of-sample Sharpe per fold**, which is the fastest way to see overfitting: a strategy whose IS Sharpe is 2.5 and OOS Sharpe is 0.1 has been curve-fit, not discovered.
+`walkforward` reports **in-sample vs out-of-sample Sharpe per fold**, which is the fastest way to see overfitting: a strategy whose IS Sharpe is 2.5 and OOS Sharpe is 0.1 has been curve-fit, not discovered. It then puts error bars on the stitched result and runs the signal-quality gate (`research/signal_quality.py`) on the out-of-sample trades.
+
+The gate's thresholds are fixed before any result is seen. It was written for arbitrage-style signals, which should win most of the time; trend following deliberately loses small and often and earns from a few large trends, so it can fail the median and concentration checks by design. A failure is a statement about the shape of the returns to read, not a verdict to override.
 
 ## Built-in strategies
 
@@ -106,9 +114,10 @@ Register it in `strategies/__init__.py` and the optimizer, scanner, and walk-for
 
 ## Honest limitations
 
-- Backtests charge a flat fee and slippage; they do **not** model market impact, partial fills, or borrow costs for shorts.
-- Equity and crypto data come from `yfinance`; survivorship bias is not corrected for.
-- Polymarket price history is thin for low-volume markets — treat those results as directional at best.
+- Backtests charge a flat fee and slippage per venue; they do **not** model market impact or partial fills. Short borrow is a flat annual rate you supply.
+- OKX serves only about three months of funding history, so `--perp` charges nothing before that and says how much of the backtest it covered.
+- Equity data comes from `yfinance`; crypto from Binance where reachable, else Yahoo (each result says which). Survivorship bias is not corrected for.
+- Polymarket price history is a last-trade series with no bid-ask spread, and thin markets print stale prices; the CLI warns on every Polymarket run. Treat those results as directional at best.
 - **Historical performance does not predict future returns.** This is a research tool, not investment advice.
 
 ## Why I built it
