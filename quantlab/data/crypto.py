@@ -59,7 +59,8 @@ def _fetch_binance(symbol: str, interval: str, limit_days: int) -> pd.DataFrame:
     return df
 
 
-def _fetch_yahoo(symbol: str, interval: str, limit_days: int) -> pd.DataFrame:
+def _fetch_yahoo(symbol: str, interval: str, limit_days: int,
+                 use_cache: bool = True) -> pd.DataFrame:
     from .stocks import fetch_stock
     yahoo_interval = _INTERVAL_MAP[interval][1]
     if yahoo_interval is None:
@@ -68,7 +69,7 @@ def _fetch_yahoo(symbol: str, interval: str, limit_days: int) -> pd.DataFrame:
         symbol = f"{symbol.upper()}-USD"
     symbol = symbol.replace("/", "-").upper().replace("USDT", "USD")
     period = "max" if limit_days > 1800 else f"{max(limit_days, 30)}d"
-    return fetch_stock(symbol, period=period, interval=yahoo_interval)
+    return fetch_stock(symbol, period=period, interval=yahoo_interval, use_cache=use_cache)
 
 
 SOURCES = ("binance", "yahoo")
@@ -78,7 +79,8 @@ def _cache_key(source: str, symbol: str, interval: str, days: int) -> str:
     return f"crypto_{source}_{symbol}_{interval}_{days}"
 
 
-def fetch_crypto(symbol: str, interval: str = "1d", days: int = 1460) -> pd.DataFrame:
+def fetch_crypto(symbol: str, interval: str = "1d", days: int = 1460,
+                 source: str | None = None, use_cache: bool = True) -> pd.DataFrame:
     """Fetch crypto OHLCV. symbol like "BTC-USD", "ETHUSDT", "SOL/USDT".
 
     Binance answers HTTP 451 to US addresses, and the fallback to Yahoo used
@@ -86,20 +88,32 @@ def fetch_crypto(symbol: str, interval: str = "1d", days: int = 1460) -> pd.Data
     (it starts in 2014, three years before Binance existed). The source now
     travels with the data in `df.attrs["source"]`, is part of the cache key,
     and a fallback says why it happened.
+
+    source pins one provider ("binance" or "yahoo") instead of falling back,
+    so a record kept over months never mixes two price series.
+    use_cache=False always downloads.
     """
     if interval not in _INTERVAL_MAP:
         raise ValueError(f"interval must be one of {list(_INTERVAL_MAP)}")
-    for source in SOURCES:
-        cached = cache.load(_cache_key(source, symbol, interval, days))
-        if cached is not None:
-            cached.attrs["source"] = source
-            return cached
-    try:
-        df, source = _fetch_binance(symbol, interval, days), "binance"
-    except Exception as e:
-        print(f"  ! binance unavailable for {symbol} ({str(e)[:80]}); "
-              f"falling back to yahoo", file=sys.stderr)
-        df, source = _fetch_yahoo(symbol, interval, days), "yahoo"
+    if source is not None and source not in SOURCES:
+        raise ValueError(f"source must be one of {SOURCES}")
+    if use_cache:
+        for src in (source,) if source else SOURCES:
+            cached = cache.load(_cache_key(src, symbol, interval, days))
+            if cached is not None:
+                cached.attrs["source"] = src
+                return cached
+    if source == "yahoo":
+        df = _fetch_yahoo(symbol, interval, days, use_cache)
+    elif source == "binance":
+        df = _fetch_binance(symbol, interval, days)
+    else:
+        try:
+            df, source = _fetch_binance(symbol, interval, days), "binance"
+        except Exception as e:
+            print(f"  ! binance unavailable for {symbol} ({str(e)[:80]}); "
+                  f"falling back to yahoo", file=sys.stderr)
+            df, source = _fetch_yahoo(symbol, interval, days, use_cache), "yahoo"
     cache.save(_cache_key(source, symbol, interval, days), df)
     df.attrs["source"] = source
     return df

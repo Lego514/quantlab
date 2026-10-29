@@ -1,0 +1,31 @@
+{
+  "name": "portfolio_2026",
+  "description": "The STRATEGY_2026.md case study traded forward: 50/50 QQQ and BTC, each a volatility-targeted momentum leg, with the parameters the final walk-forward fold selected on data through 2026-09-30.",
+  "fee": 0.001,
+  "slippage": 0.0005,
+  "fill": "next_open",
+  "legs": [
+    {
+      "symbol": "QQQ",
+      "market": "stock",
+      "weight": 0.5,
+      "strategy": "vol_momentum",
+      "params": {"lookback": 90, "target_vol": 0.15},
+      "history": {"period": "2y"}
+    },
+    {
+      "symbol": "BTC-USD",
+      "market": "crypto",
+      "weight": 0.5,
+      "strategy": "vol_momentum",
+      "params": {"lookback": 120, "target_vol": 0.15},
+      "history": {"days": 730},
+      "source": "yahoo"
+    }
+  ],
+  "expected": {
+    "sharpe": 1.08,
+    "sharpe_ci": [0.34, 1.78],
+    "source": "walk-forward out-of-sample, Feb 2018 to Sep 2026, STRATEGY_2026.md"
+  }
+}

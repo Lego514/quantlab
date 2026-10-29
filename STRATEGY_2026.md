@@ -4,6 +4,8 @@
 
 This is a worked example of what the engine is for: take a plausible idea, subject it to out-of-sample validation, and report the result honestly whether or not it flatters the idea.
 
+**Since the end of October 2026 the portfolio also trades forward**, on rules frozen with the final fold's parameters (QQQ 90-day lookback, BTC 120-day, 15% volatility target), recorded daily by GitHub Actions in [`forward/ledgers/portfolio_2026/`](forward/ledgers/portfolio_2026/). Every number on this page is a backtest; that ledger is the out-of-sample record nobody can fit after the fact.
+
 ## Second restatement (2026-10-28)
 
 Same data (through 2026-09-30); only the method changed. Each change came from a lesson learned the hard way in sibling research projects (Polymarket and funding-rate scanners, a crypto paper-trading system):

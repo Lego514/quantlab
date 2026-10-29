@@ -89,6 +89,21 @@ Standalone studies that use the engine rather than extend it:
 - **`crypto_rotation.py`** — weekly top-N momentum rotation across altcoins, with an honest split: parameters chosen on pre-2023 data, validated on 2024+
 - **`leverage_sweep.py`** — sweeps 1x–4x leverage over already-validated out-of-sample returns to show the return/drawdown tradeoff
 
+## Forward record (`forward/`)
+
+A backtest can be fit to the past; a record kept after the rules were frozen cannot. The 2026 case study's portfolio now trades forward every day:
+
+- **Frozen rules** in [`forward/specs/portfolio_2026.json`](forward/specs/portfolio_2026.json). Their hash is locked when the ledger starts, and the ledger refuses to run if the rules change; new rules get a new name and a new ledger.
+- **Daily, on GitHub Actions** ([`forward.yml`](.github/workflows/forward.yml), 00:30 UTC): run the tests, record each newly completed bar (fill at the open, mark at the close, with the backtester's own per-bar formula), reconcile, commit. The ledger lives in [`forward/ledgers/portfolio_2026/`](forward/ledgers/portfolio_2026/).
+- **Append-only**, and the git history timestamps every row: `git log -p forward/ledgers` shows when each day was written. Days caught up after a missed run are marked `recorded_late`.
+- **Reconciled every run**: each row must follow exactly from the previous one and its recorded prices, and the backtester replaying the same bars on fresh data must agree with the ledger.
+
+```bash
+python main.py forward run         # record new completed bars
+python main.py forward reconcile   # check the ledger against itself and the engine
+python main.py forward status      # summary
+```
+
 ## Setup
 
 ```bash

@@ -197,6 +197,27 @@ def cmd_scan(args):
           "believing any.")
 
 
+def cmd_forward(args):
+    from quantlab import forward
+    if args.action == "run":
+        appended = forward.run(args.spec)
+        for symbol, n in appended.items():
+            print(f"  {symbol}: {n} new row(s)")
+        print()
+        print(forward.summary_text(forward.load_spec(args.spec)))
+    elif args.action == "reconcile":
+        problems = forward.reconcile(args.spec)
+        if problems:
+            print("reconcile FAILED:")
+            for p in problems:
+                print(f"  x {p}")
+            sys.exit(1)
+        print("reconcile OK: the ledger follows from its own prices, and the backtester "
+              "agrees with it on fresh data")
+    else:
+        print(forward.summary_text(forward.load_spec(args.spec)))
+
+
 def cmd_pm_search(args):
     df = search_polymarket_markets(args.query, limit=args.limit)
     if df.empty:
@@ -258,6 +279,11 @@ def build_parser():
     sp.add_argument("--control", type=int, default=0,
                     help="random-timing control runs per cell (0 = off)")
     sp.set_defaults(func=cmd_scan)
+
+    sp = sub.add_parser("forward", help="frozen-rule forward ledger (see forward/)")
+    sp.add_argument("action", choices=["run", "reconcile", "status"])
+    sp.add_argument("--spec", default="forward/specs/portfolio_2026.json")
+    sp.set_defaults(func=cmd_forward)
 
     sp = sub.add_parser("pm-search", help="search Polymarket markets")
     sp.add_argument("--query", default="")
