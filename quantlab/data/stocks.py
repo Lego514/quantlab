@@ -16,10 +16,13 @@ def _normalize(df: pd.DataFrame) -> pd.DataFrame:
     return df[keep].dropna(subset=["close"])
 
 
-def fetch_stock(symbol: str, period: str = "5y", interval: str = "1d") -> pd.DataFrame:
-    """Fetch OHLCV for a stock ticker via Yahoo Finance, with local cache."""
+def fetch_stock(symbol: str, period: str = "5y", interval: str = "1d",
+                use_cache: bool = True) -> pd.DataFrame:
+    """Fetch OHLCV for a stock ticker via Yahoo Finance, with local cache.
+
+    use_cache=False always downloads (the forward ledger needs today's bar)."""
     key = f"stock_{symbol}_{period}_{interval}"
-    cached = cache.load(key)
+    cached = cache.load(key) if use_cache else None
     if cached is not None:
         cached.attrs["source"] = "yahoo"
         return cached

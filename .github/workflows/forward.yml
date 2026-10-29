@@ -1,0 +1,43 @@
+name: forward
+
+# Records the frozen-rule forward ledger once a day and commits it, so the
+# git history timestamps every recorded bar.
+#
+# 00:30 UTC: QQQ closed at 20:00/21:00 UTC and BTC's daily bar ended at 00:00.
+on:
+  schedule:
+    - cron: "30 0 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: forward-ledger
+  cancel-in-progress: false
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      # Never record with an engine that fails its own tests.
+      - run: pytest
+      - run: python main.py forward run
+      - run: python main.py forward reconcile
+      - name: Commit the new rows
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add forward/ledgers
+          if git diff --cached --quiet; then
+            echo "no new completed bar"
+            exit 0
+          fi
+          git commit -m "Forward ledger: run of $(date -u +%F)"
+          git push

@@ -66,6 +66,14 @@ class BacktestResult:
         return "\n".join(lines)
 
 
+def step_return(carried, held, gap, intra, cost_rate, financing=0.0):
+    """One bar's return, per the module docstring. Works on floats or on
+    aligned Series; the forward ledger uses the same function on single bars,
+    so live records and backtests cannot drift apart in their accounting."""
+    cost = abs(held - carried) * cost_rate
+    return (1 + carried * gap) * (1 - cost) * (1 + held * intra) * (1 - financing) - 1
+
+
 def trade_entry_times(held: pd.Series) -> pd.DatetimeIndex:
     """Bars where a trade opens, in the order `_extract_trades` reports them."""
     opened = (held != 0) & (held.shift(1).fillna(0.0) == 0)
@@ -105,12 +113,9 @@ class Backtester:
         asset_returns = close.pct_change().fillna(0.0)
         gap, intra, fill = self._session_returns(prices)
 
-        turnover = (held - carried).abs()
-        cost = turnover * (self.fee + self.slippage)
         financing = self._financing(held, close.index, funding)
-
-        strat_returns = ((1 + carried * gap) * (1 - cost) * (1 + held * intra)
-                         * (1 - financing) - 1)
+        strat_returns = step_return(carried, held, gap, intra,
+                                    self.fee + self.slippage, financing)
         equity = (1 + strat_returns).cumprod()
         benchmark = (1 + asset_returns).cumprod()
 
