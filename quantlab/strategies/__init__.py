@@ -6,6 +6,8 @@ from .momentum import Momentum
 from .bollinger import BollingerReversion
 from .vol_momentum import VolMomentum
 from .donchian import DonchianBreakout
+from .trend_vol import TrendVolTarget
+from .rsi2 import Rsi2
 
 REGISTRY = {
     "donchian": DonchianBreakout,
@@ -15,6 +17,8 @@ REGISTRY = {
     "momentum": Momentum,
     "bollinger": BollingerReversion,
     "vol_momentum": VolMomentum,
+    "trend_vol": TrendVolTarget,
+    "rsi2": Rsi2,
 }
 
 

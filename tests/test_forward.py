@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from quantlab.forward import ledger, load_spec, reconcile, run
+from quantlab.forward import ledger, load_spec, reconcile, reconcile_all, run, run_all
 from quantlab.forward.runner import completed_bars, ledger_dir
 
 SPEC = {
@@ -184,6 +184,29 @@ def test_a_bar_the_source_fills_in_later_is_skipped_not_fatal(book):
     assert reconcile(spec_path, fetch=fake_fetch, root=root, now=at(5)) == []
     run(spec_path, now=at(6), fetch=fake_fetch, root=root)
     assert _rows(book, "BBB")["date"].dt.day.tolist() == [2, 4, 5]  # 3/3 never inserted
+
+
+def test_run_all_keeps_recording_when_one_ledger_fails(tmp_path):
+    specs = tmp_path / "forward" / "specs"
+    specs.mkdir(parents=True)
+    (specs / "good.json").write_text(json.dumps({**SPEC, "name": "good"}))
+    broken = json.loads(json.dumps(SPEC))
+    broken["name"] = "broken"
+    broken["legs"][1]["symbol"] = "ZZZ"  # the fetcher has no data for it
+    (specs / "broken.json").write_text(json.dumps(broken))
+
+    def fetch(leg):
+        return fake_fetch(leg) if leg.symbol in DATA else (_ for _ in ()).throw(
+            ConnectionError("no data"))
+
+    results = run_all(now=at(3), fetch=fetch, root=tmp_path)
+    assert results["good"] == {"AAA": 1, "BBB": 1}
+    assert isinstance(results["broken"], ConnectionError)
+    assert not (tmp_path / "forward" / "ledgers" / "broken").exists()
+    index = (tmp_path / "forward" / "README.md").read_text(encoding="utf-8")
+    assert "[good](ledgers/good/)" in index and "| broken |" in index
+    # Only started ledgers are reconciled.
+    assert reconcile_all(fetch=fetch, root=tmp_path, now=at(3)) == {"good": []}
 
 
 def test_reconcile_catches_an_edited_row(book):

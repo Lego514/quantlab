@@ -28,16 +28,27 @@ jobs:
       - run: pip install -r requirements-dev.txt
       # Never record with an engine that fails its own tests.
       - run: pytest
-      - run: python main.py forward run
+      # Every spec in forward/specs. A ledger whose download fails writes
+      # nothing and catches up tomorrow; the others still get recorded.
+      - name: Record new bars
+        id: record
+        continue-on-error: true
+        run: python main.py forward run
+      # Nothing is committed unless every started ledger reconciles.
       - run: python main.py forward reconcile
       - name: Commit the new rows
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add forward/ledgers
+          git add forward/ledgers forward/README.md
           if git diff --cached --quiet; then
             echo "no new completed bar"
             exit 0
           fi
           git commit -m "Forward ledger: run of $(date -u +%F)"
           git push
+      - name: Fail the run if any ledger could not record
+        if: steps.record.outcome == 'failure'
+        run: |
+          echo "At least one ledger failed to record (see 'Record new bars'); the rest were committed."
+          exit 1
