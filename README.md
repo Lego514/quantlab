@@ -105,7 +105,7 @@ A backtest can be fit to the past; a record kept after the rules were frozen can
 The last two moved here from a sibling project's ledgers; `tests/test_ported_strategies.py` checks them bar for bar against a transcription of the original code.
 
 - **Frozen rules** in [`forward/specs/`](forward/specs/). Their hash is locked when a ledger starts, and the ledger refuses to run if the rules change; new rules get a new name and a new ledger.
-- **Daily, on GitHub Actions** ([`forward.yml`](.github/workflows/forward.yml), 00:30 UTC): run the tests, record each newly completed bar (fill at the open, mark at the close, with the backtester's own per-bar formula), reconcile, commit. Ledgers live in [`forward/ledgers/`](forward/ledgers/). A ledger whose download fails writes nothing and catches up the next day; the others are still recorded.
+- **Daily, on GitHub Actions** ([`forward.yml`](.github/workflows/forward.yml), 01:17 UTC with a 13:43 UTC backup, since GitHub can drop a scheduled run): run the tests, record each newly completed bar (fill at the open, mark at the close, with the backtester's own per-bar formula), reconcile, commit. Ledgers live in [`forward/ledgers/`](forward/ledgers/). A ledger whose download fails writes nothing and catches up the next day; the others are still recorded.
 - **Append-only**, and the git history timestamps every row: `git log -p forward/ledgers` shows when each day was written. Days caught up after a missed run are marked `recorded_late`.
 - **Reconciled every run**: each row must follow exactly from the previous one and its recorded prices, and the backtester replaying the same bars on fresh data must agree with the ledger.
 
