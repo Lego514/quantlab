@@ -1,12 +1,18 @@
 name: forward
 
-# Records the frozen-rule forward ledger once a day and commits it, so the
+# Records the frozen-rule forward ledgers every day and commits them, so the
 # git history timestamps every recorded bar.
 #
-# 00:30 UTC: QQQ closed at 20:00/21:00 UTC and BTC's daily bar ended at 00:00.
+# GitHub delays scheduled runs under load and sometimes drops them, worst at
+# the top and half of the hour; the first 00:30 UTC run (2026-10-30) had not
+# fired 2.5 hours later. So: odd minutes, and two runs a day. Recording is
+# idempotent, so the second run only writes what the first missed.
+#   01:17 UTC  after QQQ's close (20:00/21:00 UTC) and BTC's 00:00 UTC bar
+#   13:43 UTC  backup; QQQ's bar for the day is still forming and is skipped
 on:
   schedule:
-    - cron: "30 0 * * *"
+    - cron: "17 1 * * *"
+    - cron: "43 13 * * *"
   workflow_dispatch: {}
 
 permissions:
