@@ -6,11 +6,11 @@ Rules frozen in [`forward/specs/rsi2_etf.json`](../../specs/rsi2_etf.json) (rule
 
 | Leg | Anchor bar | Last bar | Bars | Return | Position now | Recorded late |
 |---|---|---|---|---|---|---|
-| SPY (50%) | 2026-10-29 | 2026-10-29 | 0 | +0.00% | 0.00 | 0 |
-| QQQ (50%) | 2026-10-29 | 2026-10-29 | 0 | +0.00% | 0.00 | 0 |
-| **Portfolio** | 2026-10-29 | 2026-10-29 | 0 | **+0.00%** | | |
+| SPY (50%) | 2026-10-29 | 2026-10-30 | 1 | +0.00% | 1.00 | 0 |
+| QQQ (50%) | 2026-10-29 | 2026-10-30 | 1 | +0.00% | 1.00 | 0 |
+| **Portfolio** | 2026-10-29 | 2026-10-30 | 1 | **+0.00%** | | |
 
 Connors-style RSI(2) mean reversion on SPY and QQQ, moved here from a sibling project's ledger (deployed settings: threshold 10 with the 200-day filter, exit above the prior 5-day average). Half in each. The original used unadjusted closes and filled at the signal close; this ledger uses dividend-adjusted prices and fills at the next open, so signals near ex-dividend dates can differ slightly and it starts fresh.
 
 Backtest expectation (the sibling project's backtest, calibrated on the last ten years): about +0.4% a trade with a 79% win rate; in the market only a few days at a time.
-0 portfolio days so far: far too few to compare a Sharpe with that interval. Read this as a running log, not a verdict.
+1 portfolio days so far: far too few to compare a Sharpe with that interval. Read this as a running log, not a verdict.
