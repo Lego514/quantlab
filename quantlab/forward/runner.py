@@ -40,6 +40,8 @@ STOCK_DATA_SETTLED = 17  # New York hour; the close is 16:00, give the data an h
 EQUITY_TOL = 1e-12   # ledger arithmetic must match its own inputs exactly
 ENGINE_TOL = 1e-6    # ledger vs backtester on freshly downloaded data
 TARGET_TOL = 1e-6
+TARGET_FAIL = 0.05   # a target off by this much with no data revision is a logic change
+REVISION_TOL = 1e-9  # a recorded price move that changed by more than this was revised
 
 
 def ledger_dir(spec: Spec, root: Path | None = None) -> Path:
@@ -159,6 +161,11 @@ def reconcile(spec_path, fetch=default_fetch, root: Path | None = None,
        recorded prices, exactly
     2. the engine: the backtester, run on fresh data over the same bars with
        the strategy's own positions, gives the same equity and targets
+
+    The source may correct a price after it was recorded (Yahoo moved QQQ's
+    2026-11-02 open from 695.315 to 695.320 the next day). The ledger keeps
+    the price it traded at, so a disagreement that a revision explains is
+    printed as a warning; only one that no revision explains is a problem.
     """
     spec = load_spec(spec_path)
     d = ledger_dir(spec, root)
@@ -178,7 +185,10 @@ def reconcile(spec_path, fetch=default_fetch, root: Path | None = None,
             print(f"  ! {spec.name}/{leg.symbol}: engine check skipped, fetch failed "
                   f"({str(e)[:80]})", file=sys.stderr)
             continue
-        problems += _check_engine(leg, spec, rows, completed_bars(fresh, leg.market, now))
+        found, warnings = _check_engine(leg, spec, rows, completed_bars(fresh, leg.market, now))
+        problems += found
+        for w in warnings:
+            print(f"  ! {spec.name}/{w}", file=sys.stderr)
     return problems
 
 
@@ -201,11 +211,31 @@ def _check_arithmetic(symbol, rows, cost_rate) -> list[str]:
     return out
 
 
-def _check_engine(leg, spec, rows, bars) -> list[str]:
+def _revisions(rows, seen) -> list[str]:
+    """Recorded bars whose price moves the source has since changed.
+
+    Moves, not levels: a dividend adjustment rescales every earlier price by
+    one factor and changes no move, so it is not a revision."""
+    out = []
+    dates = list(rows["date"])
+    for i in range(1, len(dates)):
+        r = rows.iloc[i]
+        prev = seen.index[seen.index.get_loc(dates[i]) - 1]
+        f_open, f_close = seen["open"].loc[dates[i]], seen["close"].loc[dates[i]]
+        moves = {"gap": (r["open"] / r["prev_close"], f_open / seen["close"].loc[prev]),
+                 "session": (r["close"] / r["open"], f_close / f_open)}
+        for name, (recorded, fresh) in moves.items():
+            if abs(fresh / recorded - 1) > REVISION_TOL:
+                out.append(f"{dates[i].date()} {name} {recorded - 1:+.6%} -> {fresh - 1:+.6%}")
+    return out
+
+
+def _check_engine(leg, spec, rows, bars) -> tuple[list[str], list[str]]:
+    """(problems, warnings)."""
     anchor = rows["date"].iloc[0]
     missing = [t.date() for t in rows["date"] if t not in bars.index]
     if missing:
-        return [f"{leg.symbol}: fresh data lacks recorded bars {missing[:3]}"]
+        return [f"{leg.symbol}: fresh data lacks recorded bars {missing[:3]}"], []
     # Replay exactly the bars the ledger saw. Yahoo sometimes skips a day and
     # fills it in later; a bar that appeared after the fact is not one the
     # ledger could have traded, and must not make every later check fail.
@@ -216,15 +246,27 @@ def _check_engine(leg, spec, rows, bars) -> list[str]:
     result = Backtester(fee=spec.fee, slippage=spec.slippage, fill="next_open").run(
         window, FixedPositions(positions))
     equity = result.equity.loc[rows["date"]].to_numpy()
-    out = []
+    revised = _revisions(rows, seen)
+    problems, warnings = [], []
+
     worst = abs(equity / rows["equity"].to_numpy() - 1).max()
     if worst > ENGINE_TOL:
-        out.append(f"{leg.symbol}: backtester equity differs from the ledger by up to "
-                   f"{worst:.2e} (data revised, or the ledger drifted from the engine)")
+        if revised:
+            warnings.append(f"{leg.symbol}: source revised recorded prices ({'; '.join(revised[:3])}); "
+                            f"the ledger keeps what it traded at, the backtester differs by {worst:.1e}")
+        else:
+            problems.append(f"{leg.symbol}: backtester equity differs from the ledger by up to "
+                            f"{worst:.2e} with no price revised: the ledger drifted from the engine")
     gap = abs(positions.loc[rows["date"]].to_numpy() - rows["target_next"].to_numpy()).max()
     if gap > TARGET_TOL:
-        out.append(f"{leg.symbol}: targets differ from the strategy's by up to {gap:.4f}")
-    return out
+        # Targets read history from before the anchor too, which a revision can
+        # touch unseen; only a large gap with nothing revised is a logic change.
+        if gap > TARGET_FAIL and not revised:
+            problems.append(f"{leg.symbol}: targets differ from the strategy's by up to {gap:.4f}")
+        else:
+            warnings.append(f"{leg.symbol}: targets differ from the strategy's by up to {gap:.4f}"
+                            " (consistent with revised data)")
+    return problems, warnings
 
 
 def portfolio_equity(spec: Spec, root: Path | None = None) -> pd.Series:

@@ -154,20 +154,41 @@ def test_dividend_adjusted_history_uses_the_fresh_previous_close(book):
     assert reconcile(spec_path, fetch=adjusted, root=root, now=at(4)) == []
 
 
-def test_reconcile_flags_data_the_ledger_did_not_see(book):
-    # The engine check is not vacuous: if the data were revised after the
-    # fact, the backtester and the ledger disagree and reconcile says so.
+def test_a_price_the_source_revises_later_warns_but_does_not_fail(book, capsys):
+    # Yahoo moved QQQ's 2026-11-02 open from 695.315 to 695.320 the next day,
+    # and reconcile blocked every ledger for three days over it.
     spec_path, root = book
     run(spec_path, now=at(3), fetch=fake_fetch, root=root)
     run(spec_path, now=at(5), fetch=fake_fetch, root=root)
 
     def revised(leg):
         df = fake_fetch(leg)
-        df.loc[pd.Timestamp("2026-03-05"), "close"] *= 1.02
+        # A close, so the move a held position earned changes. (An open
+        # revision on a bar where the position did not change mostly cancels
+        # out between the gap and the session, and rightly raises nothing.)
+        df.loc[pd.Timestamp("2026-03-05"), "close"] *= 1.00001
         return df
 
-    problems = reconcile(spec_path, fetch=revised, root=root, now=at(5))
-    assert any("backtester equity differs" in p for p in problems)
+    assert _rows(book, "AAA")["held"].iloc[-1] > 0
+    assert reconcile(spec_path, fetch=revised, root=root, now=at(5)) == []
+    err = capsys.readouterr().err
+    assert "source revised recorded prices" in err and "2026-03-05" in err
+
+
+def test_a_ledger_that_drifted_from_the_strategy_fails(book, monkeypatch):
+    # The engine check is not vacuous: record with the wrong strategy (as a
+    # bug would), keep the data unchanged, and reconcile must object.
+    spec_path, root = book
+    from quantlab.forward import runner
+    from quantlab.strategies import BuyHold
+    monkeypatch.setattr(runner, "make_strategy", lambda name, **params: BuyHold())
+    run(spec_path, now=at(3), fetch=fake_fetch, root=root)
+    run(spec_path, now=at(5), fetch=fake_fetch, root=root)
+    monkeypatch.undo()
+
+    problems = reconcile(spec_path, fetch=fake_fetch, root=root, now=at(5))
+    assert any("no price revised" in p for p in problems)
+    assert any("targets differ" in p for p in problems)
 
 
 def test_a_bar_the_source_fills_in_later_is_skipped_not_fatal(book):

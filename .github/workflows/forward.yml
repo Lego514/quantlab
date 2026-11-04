@@ -40,21 +40,35 @@ jobs:
         id: record
         continue-on-error: true
         run: python main.py forward run
-      # Nothing is committed unless every started ledger reconciles.
-      - run: python main.py forward reconcile
+      # A ledger that fails reconcile is put back as it was before this run;
+      # the others are still committed. (Until 2026-11-04 one failure held
+      # back every ledger: three days of rows went unrecorded.)
+      - name: Reconcile
+        id: reconcile
+        continue-on-error: true
+        run: python main.py forward reconcile --failed-file failed_ledgers.txt
       - name: Commit the new rows
         run: |
+          if [ -s failed_ledgers.txt ]; then
+            while read -r name; do
+              echo "not committing $name: it failed reconcile"
+              git checkout -- "forward/ledgers/$name" 2>/dev/null || true
+              git clean -fdq -- "forward/ledgers/$name"
+            done < failed_ledgers.txt
+            python main.py forward index
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add forward/ledgers forward/README.md
           if git diff --cached --quiet; then
-            echo "no new completed bar"
+            echo "nothing new to commit"
             exit 0
           fi
           git commit -m "Forward ledger: run of $(date -u +%F)"
           git push
-      - name: Fail the run if any ledger could not record
-        if: steps.record.outcome == 'failure'
+      - name: Fail the run if any ledger could not record or reconcile
+        if: steps.record.outcome == 'failure' || steps.reconcile.outcome == 'failure'
         run: |
-          echo "At least one ledger failed to record (see 'Record new bars'); the rest were committed."
+          echo "At least one ledger failed to record or reconcile (see the steps above);"
+          echo "the others were committed."
           exit 1
