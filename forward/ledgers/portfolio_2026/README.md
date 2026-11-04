@@ -6,11 +6,11 @@ Rules frozen in [`forward/specs/portfolio_2026.json`](../../specs/portfolio_2026
 
 | Leg | Anchor bar | Last bar | Bars | Return | Position now | Recorded late |
 |---|---|---|---|---|---|---|
-| QQQ (50%) | 2026-10-28 | 2026-11-02 | 3 | -0.44% | 0.00 | 0 |
-| BTC-USD (50%) | 2026-10-27 | 2026-11-01 | 5 | -2.03% | 0.52 | 0 |
-| **Portfolio** | 2026-10-28 | 2026-10-30 | 2 | **-1.91%** | | |
+| QQQ (50%) | 2026-10-28 | 2026-11-03 | 4 | -0.44% | 0.00 | 0 |
+| BTC-USD (50%) | 2026-10-27 | 2026-11-03 | 7 | -2.63% | 0.53 | 1 |
+| **Portfolio** | 2026-10-28 | 2026-11-03 | 4 | **-1.66%** | | |
 
 The STRATEGY_2026.md case study traded forward: 50/50 QQQ and BTC, each a volatility-targeted momentum leg, with the parameters the final walk-forward fold selected on data through 2026-09-30.
 
 Backtest expectation (walk-forward out-of-sample, Feb 2018 to Sep 2026, STRATEGY_2026.md): Sharpe 1.08, 95% interval 0.34–1.78.
-2 portfolio days so far: far too few to compare a Sharpe with that interval. Read this as a running log, not a verdict.
+4 portfolio days so far: far too few to compare a Sharpe with that interval. Read this as a running log, not a verdict.
