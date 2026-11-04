@@ -225,7 +225,14 @@ def cmd_forward(args):
                 for p in problems:
                     print(f"      {p}")
             else:
-                print(f"  {name}: reconcile OK (own arithmetic exact; backtester agrees)")
+                print(f"  {name}: reconcile OK (own arithmetic exact; engine agrees "
+                      "or a source revision explains the difference)")
+        if args.failed_file:
+            # The workflow puts these ledgers back as they were and commits the rest.
+            Path(args.failed_file).write_text(
+                "".join(f"{n}\n" for n, p in results.items() if p), encoding="utf-8")
+    elif args.action == "index":
+        forward.write_index()
     else:
         for p in specs:
             print(forward.summary_text(forward.load_spec(p)))
@@ -303,8 +310,9 @@ def build_parser():
     sp.set_defaults(func=cmd_scan)
 
     sp = sub.add_parser("forward", help="frozen-rule forward ledger (see forward/)")
-    sp.add_argument("action", choices=["run", "reconcile", "status"])
+    sp.add_argument("action", choices=["run", "reconcile", "status", "index"])
     sp.add_argument("--spec", help="one spec file; default: every spec in forward/specs")
+    sp.add_argument("--failed-file", help="reconcile: write the names of ledgers that failed here")
     sp.set_defaults(func=cmd_forward)
 
     sp = sub.add_parser("pm-search", help="search Polymarket markets")
