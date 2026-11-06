@@ -6,12 +6,12 @@ Rules frozen in [`forward/specs/trend_crypto.json`](../../specs/trend_crypto.jso
 
 | Leg | Anchor bar | Last bar | Bars | Return | Position now | Recorded late |
 |---|---|---|---|---|---|---|
-| BTC-USD (33%) | 2026-10-28 | 2026-11-04 | 7 | -1.29% | 0.63 | 1 |
-| ETH-USD (33%) | 2026-10-28 | 2026-11-04 | 7 | +1.31% | 0.46 | 1 |
-| SOL-USD (33%) | 2026-10-28 | 2026-11-04 | 7 | -3.87% | 0.47 | 1 |
-| **Portfolio** | 2026-10-28 | 2026-11-04 | 7 | **-1.30%** | | |
+| BTC-USD (33%) | 2026-10-28 | 2026-11-05 | 8 | -4.78% | 0.55 | 1 |
+| ETH-USD (33%) | 2026-10-28 | 2026-11-05 | 8 | -2.34% | 0.40 | 1 |
+| SOL-USD (33%) | 2026-10-28 | 2026-11-05 | 8 | -6.87% | 0.43 | 1 |
+| **Portfolio** | 2026-10-28 | 2026-11-05 | 8 | **-4.67%** | | |
 
 Crypto trend following, moved here from a sibling project's ledger (rules frozen 2026-07-03, recorded there from 2026-07-03 to 2026-10-28 with fills at the signal close). Equal thirds of BTC, ETH and SOL; each is held while its close is above the 200-day average, sized to a 20% volatility target. This ledger fills at the next open like every other quantlab result, so it starts fresh rather than continuing the old record.
 
 Backtest expectation (the sibling project's 10-year backtest, fills at the signal close): about 17% a year, Sharpe 1.23, max drawdown -14%; flat most of the time (164 entries and exits across the three assets in ten years).
-7 portfolio days so far: far too few to compare a Sharpe with that interval. Read this as a running log, not a verdict.
+8 portfolio days so far: far too few to compare a Sharpe with that interval. Read this as a running log, not a verdict.
