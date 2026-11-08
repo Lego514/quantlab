@@ -6,4 +6,4 @@ Ledgers trading frozen rules, one completed bar at a time, recorded daily by Git
 |---|---|---|---|---|
 | [portfolio_2026](ledgers/portfolio_2026/) | QQQ 50%, BTC-USD 50% | 2026-10-29 | 2026-11-06 | -1.98% |
 | [rsi2_etf](ledgers/rsi2_etf/) | SPY 50%, QQQ 50% | 2026-10-30 | 2026-11-06 | -2.49% |
-| [trend_crypto](ledgers/trend_crypto/) | BTC-USD 33%, ETH-USD 33%, SOL-USD 33% | 2026-10-30 | 2026-11-06 | -4.58% |
+| [trend_crypto](ledgers/trend_crypto/) | BTC-USD 33%, ETH-USD 33%, SOL-USD 33% | 2026-10-30 | 2026-11-07 | -4.64% |
