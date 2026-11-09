@@ -7,7 +7,7 @@ Rules frozen in [`forward/specs/portfolio_2026.json`](../../specs/portfolio_2026
 | Leg | Anchor bar | Last bar | Bars | Return | Position now | Recorded late |
 |---|---|---|---|---|---|---|
 | QQQ (50%) | 2026-10-28 | 2026-11-06 | 7 | -0.44% | 0.00 | 0 |
-| BTC-USD (50%) | 2026-10-27 | 2026-11-07 | 11 | -3.29% | 0.42 | 1 |
+| BTC-USD (50%) | 2026-10-27 | 2026-11-08 | 12 | -3.92% | 0.42 | 1 |
 | **Portfolio** | 2026-10-28 | 2026-11-06 | 7 | **-1.98%** | | |
 
 The STRATEGY_2026.md case study traded forward: 50/50 QQQ and BTC, each a volatility-targeted momentum leg, with the parameters the final walk-forward fold selected on data through 2026-09-30.
