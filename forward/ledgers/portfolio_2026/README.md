@@ -6,7 +6,7 @@ Rules frozen in [`forward/specs/portfolio_2026.json`](../../specs/portfolio_2026
 
 | Leg | Anchor bar | Last bar | Bars | Return | Position now | Recorded late |
 |---|---|---|---|---|---|---|
-| QQQ (50%) | 2026-10-28 | 2026-11-13 | 12 | -0.44% | 0.00 | 0 |
+| QQQ (50%) | 2026-10-28 | 2026-11-16 | 13 | -0.44% | 0.00 | 0 |
 | BTC-USD (50%) | 2026-10-27 | 2026-11-15 | 19 | -8.97% | 0.34 | 1 |
 | **Portfolio** | 2026-10-28 | 2026-11-13 | 12 | **-4.06%** | | |
 
