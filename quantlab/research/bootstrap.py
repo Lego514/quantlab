@@ -43,6 +43,32 @@ def block_bootstrap_sharpe(returns: pd.Series, periods_per_year: float,
     }
 
 
+def paired_block_bootstrap_sharpe_diff(a: pd.Series, b: pd.Series, periods_per_year: float,
+                                       n: int = 2000, block: int = 20, seed: int = 0) -> dict:
+    """Sharpe(a) - Sharpe(b) for two return series on the same days.
+
+    Both series are resampled with the SAME blocks, so whatever the two share
+    (here: the market) cancels instead of widening the interval. p_value is
+    one-sided: the share of resamples where a does not beat b.
+    """
+    pair = pd.concat([a, b], axis=1, join="inner").dropna().to_numpy(dtype=float)
+    if len(pair) < 2 * block:
+        raise ValueError("series too short for the block size")
+    rng = np.random.default_rng(seed)
+    n_blocks = math.ceil(len(pair) / block)
+    diffs = np.empty(n)
+    for i in range(n):
+        starts = rng.integers(0, len(pair) - block + 1, size=n_blocks)
+        sample = np.concatenate([pair[s:s + block] for s in starts])[:len(pair)]
+        diffs[i] = _sharpe(sample[:, 0], periods_per_year) - _sharpe(sample[:, 1], periods_per_year)
+    return {
+        "diff": _sharpe(pair[:, 0], periods_per_year) - _sharpe(pair[:, 1], periods_per_year),
+        "ci_low": float(np.percentile(diffs, 2.5)),
+        "ci_high": float(np.percentile(diffs, 97.5)),
+        "p_value": float((diffs <= 0).mean()),
+    }
+
+
 def _profit_factor(r: np.ndarray) -> float:
     loss = -r[r <= 0].sum()
     return float(r[r > 0].sum() / loss) if loss > 0 else float("inf")
