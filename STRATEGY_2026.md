@@ -1,5 +1,7 @@
 # Case Study: Volatility-Targeted Cross-Asset Momentum Portfolio
 
+> **Verdict (2026-11-17): volatility-targeted beta, no demonstrated timing edge.** A falsification test with thresholds fixed in advance ([`reports/falsify_p1.md`](reports/falsify_p1.md)) held each leg at the strategy's own average exposure every day, with no timing at all. That static portfolio scores a Sharpe of 0.99 against the strategy's 1.08; the difference, +0.09, has a 95% interval of −0.42 to +0.57 (p = 0.39), and turns negative at triple costs. The QQQ leg's signal subtracts value (0.78 vs 0.87 static; random-timing control p = 0.22). Only the BTC leg times better than chance (control p = 0.008), on one asset chosen in hindsight. Most of the gain over buy & hold (0.88) comes from *how much* of each asset it holds on average, mostly very little Bitcoin, not from *when*. Read the rest of this page with that in mind.
+
 > First published 2026-07-05; restated 2026-09-30 and **again 2026-10-28** — see the two corrections below. **Every number is walk-forward out-of-sample** — measured on data the parameter search never saw — and net of 0.1% fees + 0.05% slippage, with trades filled at the next day's open. Data through 2026-09-30. Reproduction commands at the bottom.
 
 This is a worked example of what the engine is for: take a plausible idea, subject it to out-of-sample validation, and report the result honestly whether or not it flatters the idea.
@@ -53,14 +55,30 @@ Each leg over its own out-of-sample span: **QQQ** 0.82 Sharpe, 10.7% a year, -16
 
 Out-of-sample return correlation between the two legs is **0.15** — the diversification is real, not an artifact.
 
-The portfolio's annualized return is lower than either asset held outright because volatility targeting deliberately trades upside for risk control. On a risk-adjusted basis it beats both: a portfolio that returns 11.1% at a 15.6% drawdown is a materially different instrument from Bitcoin returning 27.5% at a 76.6% drawdown, or QQQ returning 19.8% at 35.1%. The interval is wide, though: its lower end, 0.34, is below either asset held outright.
+The portfolio's annualized return is lower than either asset held outright because volatility targeting deliberately trades upside for risk control. On a risk-adjusted basis it beats both: a portfolio that returns 11.1% at a 15.6% drawdown is a materially different instrument from Bitcoin returning 27.5% at a 76.6% drawdown, or QQQ returning 19.8% at 35.1%. The interval is wide, though: its lower end, 0.34, is below either asset held outright. And beating buy & hold is the wrong bar: see the falsification test below.
 
-## Why I think this is a real effect, not a curve fit
+## Why it looked like a real effect, and what the falsification test found
 
-1. **Walk-forward is positive in every one of 4 time folds, on 3 assets** (QQQ, BTC, ETH), with different selected parameters per fold. Overfit strategies don't survive that.
-2. **Momentum is among the most durable anomalies in the literature** (Jegadeesh & Titman 1993 onward) — documented in equities, commodities, FX, and crypto, across a century of data.
-3. **It has a behavioral basis**: investors under-react to news, so trends persist. That mechanism doesn't expire in 2026.
-4. **Parameters are not sensitive** — lookbacks of 60, 90, and 120 days all work. The result doesn't depend on one lucky number.
+These were the reasons given in July. Each is true, and none of them shows that the rules time the market:
+
+1. **Walk-forward is positive in every one of 4 time folds, on 3 assets** (QQQ, BTC, ETH). But a static holding of the same assets is positive in most of those folds too: positive is not better than not timing.
+2. **Momentum is among the most durable anomalies in the literature** (Jegadeesh & Titman 1993 onward). That is evidence for momentum in general, not for this implementation on these two assets.
+3. **It has a behavioral basis**: investors under-react to news, so trends persist.
+4. **Parameters are not sensitive.** Confirmed: lookbacks from 30 to 250 days give a plateau, not a spike (QQQ 0.70–0.96, BTC 1.21–1.50). But on QQQ the whole plateau sits at or below buy & hold (0.87).
+
+**The test that was missing** ([`experiments/falsify_portfolio.py`](experiments/falsify_portfolio.py), results in [`reports/falsify_p1.md`](reports/falsify_p1.md)): compare the strategy with the same average exposure held every day, so that only timing differs. Pass criteria were written down before the run: portfolio Sharpe above the static one with p < 0.10, and each leg beating its random-timing control with p < 0.10.
+
+| Out of sample | Strategy | Momentum signal only | Vol target only | Static, same avg exposure | Buy & hold |
+|---|---|---|---|---|---|
+| QQQ leg (avg exposure 0.64) | 0.78 | 0.78 | **0.89** | 0.87 | 0.87 |
+| BTC leg (avg exposure 0.17) | **1.37** | 1.33 | 1.16 | 1.09 | 1.09 |
+| 50/50 portfolio | 1.08 | 1.11 | 1.00 | 0.99 | 0.88 |
+
+- **Portfolio:** strategy minus static is +0.09 Sharpe (95% interval −0.42 to +0.57, p = 0.39). Triple costs: −0.15. Fills one bar later: +0.07. **Fails.**
+- **QQQ:** the momentum signal makes it worse than holding; volatility targeting alone does slightly better than the full rule. Random-timing control p = 0.22. **Fails.**
+- **BTC:** the only part that times better than chance (control p = 0.008), and the lookback plateau stays above buy & hold. But it is one asset, picked in 2026 as a past winner, whose profit came from a handful of trends (see below).
+
+Conclusion: the portfolio is a sensible way to *size* two volatile assets, mostly by holding little Bitcoin. It is not evidence of timing skill. The next test (a fixed 13-asset universe chosen in advance) asks whether the BTC result was trend following or hindsight.
 
 ## Known weaknesses (the honest section)
 
@@ -120,6 +138,7 @@ python main.py walkforward --market crypto --symbol ETH-USD --strategy vol_momen
 python experiments/portfolio_2026.py --end 2026-09-30
 python experiments/portfolio_2026.py --end 2026-09-30 --fill close   # the pre-2026-10 fill: 1.05
 python experiments/leverage_sweep.py --end 2026-09-30
+python experiments/falsify_portfolio.py --end 2026-09-30            # the falsification test
 python experiments/polymarket_favorite_bias.py --n 3000 --horizon 14
 ```
 

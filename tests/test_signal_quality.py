@@ -5,7 +5,8 @@ import pandas as pd
 import pytest
 
 from quantlab.engine import Backtester
-from quantlab.research import (block_bootstrap_sharpe, bootstrap_trades, gate, shift_control,
+from quantlab.research import (block_bootstrap_sharpe, bootstrap_trades, gate,
+                               paired_block_bootstrap_sharpe_diff, shift_control,
                                staleness_split, trades_needed, years_needed)
 from quantlab.research.signal_quality import top_share
 from quantlab.strategies import BuyHold
@@ -84,3 +85,16 @@ def test_shift_control_separates_real_timing_from_exposure(trending_prices):
     assert shift_control(noisy, _Peeker(), bt, n=50)["p_value"] < 0.05
     # Constant exposure has no timing at all: every shift is identical.
     assert shift_control(noisy, BuyHold(), bt, n=50)["p_value"] == pytest.approx(1.0)
+
+
+def test_paired_bootstrap_cancels_the_shared_market():
+    # b is the market; a is the market plus a small steady edge. Each alone
+    # has a wide Sharpe interval, but resampled together the edge is clear.
+    rng = np.random.default_rng(3)
+    market = pd.Series(rng.normal(0.0003, 0.01, 2000))
+    a = market + 0.0004
+    out = paired_block_bootstrap_sharpe_diff(a, market, periods_per_year=252, n=400)
+    assert out["diff"] > 0 and out["p_value"] < 0.01
+    # The same series against itself: no difference at all.
+    same = paired_block_bootstrap_sharpe_diff(market, market, periods_per_year=252, n=100)
+    assert same["diff"] == 0 and same["p_value"] == 1.0
