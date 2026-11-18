@@ -233,6 +233,15 @@ def cmd_forward(args):
                 "".join(f"{n}\n" for n, p in results.items() if p), encoding="utf-8")
     elif args.action == "index":
         forward.write_index()
+    elif args.action == "evaluate":
+        # Quarter-ends only with --record (forward/GOVERNANCE.md); otherwise informational.
+        text = forward.evaluate_all(record=args.record)
+        if args.record:
+            from datetime import date
+            out = Path("forward") / "reviews" / f"{date.today():%Y-%m-%d}.md"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(text, encoding="utf-8")
+        print(text)
     else:
         for p in specs:
             print(forward.summary_text(forward.load_spec(p)))
@@ -310,9 +319,11 @@ def build_parser():
     sp.set_defaults(func=cmd_scan)
 
     sp = sub.add_parser("forward", help="frozen-rule forward ledger (see forward/)")
-    sp.add_argument("action", choices=["run", "reconcile", "status", "index"])
+    sp.add_argument("action", choices=["run", "reconcile", "status", "index", "evaluate"])
     sp.add_argument("--spec", help="one spec file; default: every spec in forward/specs")
     sp.add_argument("--failed-file", help="reconcile: write the names of ledgers that failed here")
+    sp.add_argument("--record", action="store_true",
+                    help="evaluate: a quarter-end review; saved, and counted by the kill rule")
     sp.set_defaults(func=cmd_forward)
 
     sp = sub.add_parser("pm-search", help="search Polymarket markets")

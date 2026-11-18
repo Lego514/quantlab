@@ -89,6 +89,7 @@ Standalone studies that use the engine rather than extend it:
 
 - **`portfolio_2026.py`** — a 50/50 QQQ + BTC volatility-targeted momentum portfolio, scored **only on walk-forward out-of-sample returns**
 - **`falsify_portfolio.py`** — tries to falsify that portfolio: static-exposure benchmark, ablation, random-timing control, stress, with pass criteria fixed in advance. Verdict: **fails**; the gain over buy & hold is exposure sizing, not timing ([report](reports/falsify_p1.md))
+- **`falsify_universe.py`** — the same rules on 13 assets fixed in advance, full histories. Verdict: **fails**; 5 of 13 beat holding, and the combination is reliably worse than holding ([report](reports/falsify_p2.md))
 - **`polymarket_favorite_bias.py`** — tests the favorite–longshot bias on *resolved* Polymarket markets, entering at actual trades and splitting fresh from stale prices. Verdict: no bias at tradeable prices; the apparent edges on both ends live in stale prints
 - **`crypto_rotation.py`** — weekly top-N momentum rotation across altcoins, with an honest split: parameters chosen on pre-2023 data, validated on 2024+
 - **`leverage_sweep.py`** — sweeps 1x–4x leverage over already-validated out-of-sample returns to show the return/drawdown tradeoff
@@ -108,12 +109,14 @@ The last two moved here from a sibling project's ledgers; `tests/test_ported_str
 - **Frozen rules** in [`forward/specs/`](forward/specs/). Their hash is locked when a ledger starts, and the ledger refuses to run if the rules change; new rules get a new name and a new ledger.
 - **Daily, on GitHub Actions** ([`forward.yml`](.github/workflows/forward.yml), 01:17 UTC with a 13:43 UTC backup, since GitHub can drop a scheduled run): run the tests, record each newly completed bar (fill at the open, mark at the close, with the backtester's own per-bar formula), reconcile, commit. Ledgers live in [`forward/ledgers/`](forward/ledgers/). A ledger whose download fails writes nothing and catches up the next day; the others are still recorded.
 - **Append-only**, and the git history timestamps every row: `git log -p forward/ledgers` shows when each day was written. Days caught up after a missed run are marked `recorded_late`.
+- **Reviewed quarterly, with kill rules fixed in advance** ([`forward/GOVERNANCE.md`](forward/GOVERNANCE.md)): a ledger stops after two quarter-ends below the 5th percentile of its backtest, or a drawdown beyond 1.5x the backtest's worst.
 - **Reconciled every run**: each row must follow exactly from the previous one and its recorded prices, and the backtester replaying the same bars on fresh data must agree with the ledger.
 
 ```bash
 python main.py forward run         # record new completed bars, every spec
 python main.py forward reconcile   # check each ledger against itself and the engine
 python main.py forward status      # summaries (--spec for one)
+python main.py forward evaluate    # percentile vs backtest, kill rules (--record at quarter-ends)
 ```
 
 ## Setup
