@@ -1,6 +1,6 @@
 # Case Study: Volatility-Targeted Cross-Asset Momentum Portfolio
 
-> **Verdict (2026-11-17): volatility-targeted beta, no demonstrated timing edge.** A falsification test with thresholds fixed in advance ([`reports/falsify_p1.md`](reports/falsify_p1.md)) held each leg at the strategy's own average exposure every day, with no timing at all. That static portfolio scores a Sharpe of 0.99 against the strategy's 1.08; the difference, +0.09, has a 95% interval of −0.42 to +0.57 (p = 0.39), and turns negative at triple costs. The QQQ leg's signal subtracts value (0.78 vs 0.87 static; random-timing control p = 0.22). Only the BTC leg times better than chance (control p = 0.008), on one asset chosen in hindsight. Most of the gain over buy & hold (0.88) comes from *how much* of each asset it holds on average, mostly very little Bitcoin, not from *when*. Read the rest of this page with that in mind.
+> **Verdict (2026-11-17): volatility-targeted beta, no demonstrated timing edge.** A falsification test with thresholds fixed in advance ([`reports/falsify_p1.md`](reports/falsify_p1.md)) held each leg at the strategy's own average exposure every day, with no timing at all. That static portfolio scores a Sharpe of 0.99 against the strategy's 1.08; the difference, +0.09, has a 95% interval of −0.42 to +0.57 (p = 0.39), and turns negative at triple costs. The QQQ leg's signal subtracts value (0.78 vs 0.87 static; random-timing control p = 0.22). Only the BTC leg times better than chance (control p = 0.008), on one asset chosen in hindsight. Most of the gain over buy & hold (0.88) comes from *how much* of each asset it holds on average, mostly very little Bitcoin, not from *when*. A second test ([`reports/falsify_p2.md`](reports/falsify_p2.md)) ran the same rules on 13 assets fixed in advance, each over its full history: they beat a static holding on only 5 of 13, and the equal-risk combination does *worse* than holding (Sharpe 0.28 vs 0.55; strategy minus static −0.34, 95% interval −0.62 to −0.07). The BTC result does not generalize. Read the rest of this page with that in mind.
 
 > First published 2026-07-05; restated 2026-09-30 and **again 2026-10-28** — see the two corrections below. **Every number is walk-forward out-of-sample** — measured on data the parameter search never saw — and net of 0.1% fees + 0.05% slippage, with trades filled at the next day's open. Data through 2026-09-30. Reproduction commands at the bottom.
 
@@ -78,7 +78,13 @@ These were the reasons given in July. Each is true, and none of them shows that 
 - **QQQ:** the momentum signal makes it worse than holding; volatility targeting alone does slightly better than the full rule. Random-timing control p = 0.22. **Fails.**
 - **BTC:** the only part that times better than chance (control p = 0.008), and the lookback plateau stays above buy & hold. But it is one asset, picked in 2026 as a past winner, whose profit came from a handful of trends (see below).
 
-Conclusion: the portfolio is a sensible way to *size* two volatile assets, mostly by holding little Bitcoin. It is not evidence of timing skill. The next test (a fixed 13-asset universe chosen in advance) asks whether the BTC result was trend following or hindsight.
+Conclusion: the portfolio is a sensible way to *size* two volatile assets, mostly by holding little Bitcoin. It is not evidence of timing skill.
+
+**The follow-up test** ([`experiments/falsify_universe.py`](experiments/falsify_universe.py), [`reports/falsify_p2.md`](reports/falsify_p2.md)) asked whether the BTC result was trend following or hindsight. Thirteen assets were fixed before the run (SPY QQQ IWM EFA EEM TLT IEF LQD GLD DBC VNQ BTC ETH), each tested out of sample over its whole history, back to 1997 for SPY. Pass required more than half to beat their static holding and the equal-risk combination to beat its static twin with p < 0.10.
+
+- Beat static: QQQ, EFA, GLD, BTC, ETH: **5 of 13**. Small caps, bonds, commodities and real estate all lose to simply holding (IWM 0.11 vs 0.47, IEF 0.16 vs 0.47).
+- Equal-risk combination: **0.28 vs 0.55** for the static holdings, strategy minus static −0.34 (95% interval −0.62 to −0.07). Not just no edge: reliably worse.
+- **Fails.** Where the rule looks good, it is on the assets that went up most in the last decade, which is what hindsight would also produce.
 
 ## Known weaknesses (the honest section)
 
